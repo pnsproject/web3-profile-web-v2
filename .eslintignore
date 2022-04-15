@@ -1,0 +1,4 @@
+pns-sdk/*
+pns-sdk-build/*
+tests/*
+src/sdkLib/*
