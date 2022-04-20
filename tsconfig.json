@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ES2017",
     "useDefineForClassFields": true,
-    "module": "esnext",
+    "module": "ES2020",
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["vite/client"],
+    "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

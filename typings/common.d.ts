@@ -1,34 +1,21 @@
 declare namespace Global {
-export type TextRecordKey = 'email' | 'url' | 'avatar' | 'description' | 'notice' | 'keywords' | 'com.github' | 'com.twitter' | 'com.facebook' | 'com.linkedin'
+  export type TextRecordKey = 'email' | 'url' | 'avatar' | 'description' | 'notice' | 'keywords' | 'com.github' | 'com.twitter' | 'com.facebook' | 'com.linkedin'
 
-export interface MediaItem {
-    name: string;
-    recordKey: TextRecordKey;
-    color: string;
-    suffix: string;
-    icon: any;
-    value?: string
-  }
+  export type MediaItem = any
 
-  export interface AddressConfig {
-    name: string,
-    color: string,
-    background: string,
-    icon: any,
-    value: string
-  }
+  export interface NftThum {
+      id:number;
+      image_url: string;
+      position: number;
+    }
 
-  export interface AddressMap {
-    [k: string]: string
-  }
-
-  export interface NftItem {
-    name:string
-    contract: string;
-    blockchain: string;
-    title: string;
-    image: string;
-    tokenId: string;
-    description?: string;
+  export interface HomeData {
+    apps: NftThum[];
+    avatars: NftThum[];
+    collections: NftThum[];
+    domains: NftThum[];
+    galaxy_credentials: NftThum[];
+    mirror_blogs: NftThum[];
+    poaps: NftThum[];
   }
 }
