@@ -9,6 +9,22 @@ declare namespace Global {
       position: number;
     }
 
+    export interface TextRecords {
+      key: TextRecordKey;
+      value: string;
+    }
+
+    export interface DomainDetail {
+        addrs: string,
+        cname: string,
+        content: string,
+        contentType: string,
+        label: string,
+        name: string,
+        owner: string,
+        textRecords: TextRecords[]
+    }
+
   export interface HomeData {
     apps: NftThum[];
     avatars: NftThum[];

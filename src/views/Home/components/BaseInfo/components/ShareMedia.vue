@@ -1,15 +1,15 @@
 <template>
-  <a class="social-media"
-     :href="props.type === 'email'? `mailto:${props.url}` : props.url">
-    <img class="normal" :src="icon[1]" :alt="props.type">
-    <img class="active" :src="icon[0]" :alt="props.type">
+  <a class="share-media" href="#">
+    <img class="normal" :src="icon[0]" :alt="props.type">
+    <img class="active" :src="icon[1]" :alt="props.type">
+    <span>{{ icon[2] }}</span>
   </a>
 </template>
 
 <script lang="ts" setup>
-import icons, { IconsType } from './setting/social_media_icons'
+import icons, { IconsType } from './setting/share_media_icons'
 import { computed } from 'vue'
-const props = defineProps<{type: IconsType, url: string}>()
+const props = defineProps<{type: IconsType}>()
 
 const icon = computed(() => {
   return icons[props.type]
@@ -17,18 +17,23 @@ const icon = computed(() => {
 </script>
 
 <style lang="less" scoped>
-  .social-media {
+  .share-media {
     cursor: pointer;
-    width: 32px;
-    height: 32px;
+    width: 62px;
+    height: 62px;
     border-radius: 32px;
     position: relative;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: #5A596E;
 
     .normal, .active {
-      position: absolute;
-      left: 50%;
-      top:50%;
-      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      display: block;
+      margin: 0 auto 10px auto;
     }
 
     .active {

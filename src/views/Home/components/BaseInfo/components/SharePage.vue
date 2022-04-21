@@ -8,18 +8,31 @@
     </div>
     <div class="content" :class="{active: activeContent}">
       <div class="title">Share this page</div>
+      <div class="media-list">
+        <ShareMedia class="media-item" v-for="item in shareMediaList" :key="item" :type="item">{{ item }}</ShareMedia>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
+import icons from './setting/share_media_icons'
+import ShareMedia from './ShareMedia.vue'
 
 const props = defineProps<{show: boolean}>()
 
-const activeContent = ref(true)
+const activeContent = ref(false)
 
 const $emit = defineEmits(['update:show'])
+
+const shareMediaList = computed(() => {
+  const res = []
+  for (const key in icons) {
+    res.push(key)
+  }
+  return res
+})
 
 const closeWindow = () => {
   activeContent.value = false
@@ -29,7 +42,7 @@ watch(props, (newVal) => {
   if (newVal.show) {
     setTimeout(() => {
       activeContent.value = true
-    }, 0)
+    }, 100)
   }
 })
 
@@ -98,6 +111,18 @@ watch(activeContent, (newVal) => {
         font-size: 24px;
         line-height: 33px;
         color: #010008;
+      }
+
+      .media-list {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        margin-top: 30px;
+        .media-item {
+          margin: 0 4px;
+          min-width: 62px;
+          text-align: center;
+        }
       }
     }
   }

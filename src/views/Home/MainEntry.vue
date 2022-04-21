@@ -7,7 +7,7 @@
           <AvatarNft :nft-list="homeData.avatars"></AvatarNft>
         </div>
         <div class="contains">
-          <BaseInfo />
+          <BaseInfo :detail="domainDetail" />
         </div>
       </div>
     </div>
@@ -66,20 +66,22 @@ const getHomeData = async () => {
   console.log('homeData', res.data)
 }
 
-const domainDetail = ref<Global.HomeData>({
-  apps: [],
-  avatars: [],
-  collections: [],
-  domains: [],
-  galaxy_credentials: [],
-  mirror_blogs: [],
-  poaps: []
+const domainDetail = ref<Global.DomainDetail>({
+  addrs: '',
+  cname: '',
+  content: '',
+  contentType: '',
+  label: '',
+  name: '',
+  owner: '',
+  textRecords: []
 })
 
 const getDomainDetail = async () => {
   await setup()
-  const res = await getDomainDetails(currDomain.value)
-  console.log('domainDetail', domainDetail)
+  const res: any = await getDomainDetails(currDomain.value)
+  domainDetail.value = res
+  console.log('domainDetail', res)
 }
 
 const getData = async () => {
