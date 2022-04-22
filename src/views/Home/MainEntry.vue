@@ -8,6 +8,10 @@
         </div>
         <div class="contains">
           <BaseInfo :detail="domainDetail" />
+          <WalletAddress :address="domainDetail.addrs" />
+          <App :app-list="homeData.apps"/>
+          <Poap :poap-list="homeData.poaps"/>
+          <GalaxCredentials :galaxy-credentials-list="homeData.galaxy_credentials"/>
         </div>
       </div>
     </div>
@@ -16,12 +20,16 @@
 </template>
 
 <script lang="ts" setup>
+import { computed, defineAsyncComponent, ref } from 'vue'
 import LayoutA from '@/layouts/LayoutA.vue'
 import PageLoading from '@/components/PageLoading/MainEntry.vue'
-import { computed, defineAsyncComponent, ref } from 'vue'
 import { drive } from '@/state/mobileCheck'
 import AvatarNft from './components/AvatarNFT/MainEntry.vue'
 import BaseInfo from './components/BaseInfo/MainEntry.vue'
+import WalletAddress from './components/WalletAddress/MainEntry.vue'
+import App from './components/App/MainEntry.vue'
+import Poap from './components/Poap/MainEntry.vue'
+import GalaxCredentials from './components/GalaxCredentials/MainEntry.vue'
 import axios from '@/plugins/axios'
 import { getDomainDetails, setup } from 'pns-sdk'
 import { useRoute } from 'vue-router'
@@ -67,7 +75,7 @@ const getHomeData = async () => {
 }
 
 const domainDetail = ref<Global.DomainDetail>({
-  addrs: '',
+  addrs: [],
   cname: '',
   content: '',
   contentType: '',

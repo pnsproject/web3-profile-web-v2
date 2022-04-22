@@ -155,8 +155,12 @@ const gotoEdit = () => {
 
 @media only screen and (max-width: 954px) {
   #BaseInfo {
+    width: 100vw;
+    max-width: 388px;
+    padding: 0 25px;
     text-align: left;
     align-items: center;
+    box-sizing: border-box;
 
     .domain {
       font-size: 24px;

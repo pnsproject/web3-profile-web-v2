@@ -9,13 +9,18 @@ declare namespace Global {
       position: number;
     }
 
-    export interface TextRecords {
+  export interface TextRecords {
       key: TextRecordKey;
       value: string;
-    }
+  }
 
-    export interface DomainDetail {
-        addrs: string,
+  export interface Addr {
+    key: TextRecordKey;
+    value: string;
+  }
+
+  export interface DomainDetail {
+        addrs: Addr[],
         cname: string,
         content: string,
         contentType: string,
@@ -33,5 +38,26 @@ declare namespace Global {
     galaxy_credentials: NftThum[];
     mirror_blogs: NftThum[];
     poaps: NftThum[];
+  }
+
+  export interface App {
+    id: number;
+    icon: string;
+    website_name: string;
+    website_url: string;
+  }
+
+  export interface Poap {
+    id: number;
+    content: string;
+    image: string;
+    published_at: string;
+    title: string;
+    url?:string
+  }
+
+  export interface GalaxyCredentials {
+    id: number;
+    name: string;
   }
 }
