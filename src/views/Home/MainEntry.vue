@@ -12,6 +12,9 @@
           <App :app-list="homeData.apps"/>
           <Poap :poap-list="homeData.poaps"/>
           <GalaxCredentials :galaxy-credentials-list="homeData.galaxy_credentials"/>
+          <Domains :domains-list="homeData.domains"/>
+          <Collections :collections-list="homeData.collections"/>
+          <MirrorBlog :blog-list="homeData.mirror_blogs" />
         </div>
       </div>
     </div>
@@ -30,9 +33,14 @@ import WalletAddress from './components/WalletAddress/MainEntry.vue'
 import App from './components/App/MainEntry.vue'
 import Poap from './components/Poap/MainEntry.vue'
 import GalaxCredentials from './components/GalaxCredentials/MainEntry.vue'
+import Domains from './components/Domains/MainEntry.vue'
+import Collections from './components/Collections/MainEntry.vue'
+import MirrorBlog from './components/MirrorBlog/MainEntry.vue'
 import axios from '@/plugins/axios'
 import { getDomainDetails, setup } from 'pns-sdk'
 import { useRoute } from 'vue-router'
+import { switchChain, setDomainInfo } from '@/state/account'
+import useMessage from '@/plugins/useMessage'
 
 const EditFrame = defineAsyncComponent(() => import('@/components/EditFrame/MainEntry.vue'))
 
@@ -70,8 +78,8 @@ const homeData = ref<Global.HomeData>({
 
 const getHomeData = async () => {
   const res = await axios.get('/api/homes/all')
-  homeData.value = res.data
-  console.log('homeData', res.data)
+  homeData.value = res.data.result
+  console.log('homeData', res.data.result)
 }
 
 const domainDetail = ref<Global.DomainDetail>({
@@ -86,10 +94,12 @@ const domainDetail = ref<Global.DomainDetail>({
 })
 
 const getDomainDetail = async () => {
+  await switchChain()
   await setup()
   const res: any = await getDomainDetails(currDomain.value)
   domainDetail.value = res
   console.log('domainDetail', res)
+  setDomainInfo(currDomain.value, res.owner)
 }
 
 const getData = async () => {
@@ -97,10 +107,13 @@ const getData = async () => {
     .then(() => {
       loading.value = false
     })
-    .catch(e => console.log(e))
-    .finally(() => {
-      loading.value = false
+    .catch(e => {
+      useMessage('error', e.message)
+      console.error(e)
     })
+    // .finally(() => {
+    //   loading.value = false
+    // })
 }
 
 getData()

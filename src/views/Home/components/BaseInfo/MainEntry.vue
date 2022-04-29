@@ -1,7 +1,7 @@
 <template>
   <div id="BaseInfo">
     <div class="domain">{{ props.detail.name }}</div>
-    <div class="des">{{ notice.value }}</div>
+    <div class="des" v-if="notice">{{ notice.value }}</div>
     <div class="domain-owner">
       <a v-if="twitter" class="twitter" :href="twitter.value" target="_blank">
         <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +22,7 @@
         :type="item.key"
         :url="item.value" />
       <SocialMedia @click.prevent="showShare=true" type="Share" url="#" class="media-item" />
-      <EditBtn class="edit" @click="gotoEdit"></EditBtn>
+      <EditBtn v-if="account.editable" class="edit" @click="gotoEdit"></EditBtn>
     </div>
   </div>
   <SharePage v-model:show="showShare" />
@@ -34,6 +34,7 @@ import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import SocialMedia from './components/SocialMedia.vue'
 import SharePage from './components/SharePage.vue'
 import { computed, ref } from 'vue'
+import { account } from '@/state/account'
 
 const props = defineProps<{detail: Global.DomainDetail}>()
 

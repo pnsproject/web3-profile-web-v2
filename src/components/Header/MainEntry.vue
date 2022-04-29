@@ -2,7 +2,8 @@
   <header class="page-header-a" :class="{mobile: isMobile}">
     <div class="page-with">
       <a href="/" class="logo">
-        <img :src="Logo" alt="pns web3 profile">
+        <img :src="Logo" class="logo-wap" alt="pns web3 profile">
+        <img :src="Logo2" class="logo-web" alt="pns web3 profile">
       </a>
       <div class="header-right">
         <div class="connect-wallet" @click="connect" v-if="!account.address">
@@ -19,6 +20,7 @@
 
 <script lang="ts" setup>
 import Logo from '@/assets/logo.svg'
+import Logo2 from '@/assets/logo2.svg'
 import appConfig from '../../state/config'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
@@ -81,6 +83,13 @@ const currDomain = computed(function ():string {
         top: 50%;
         transform: translate(-50%, -50%);
       }
+
+      .logo-wap {
+        display: none;
+      }
+      .logo-web {
+        display: block;
+      }
     }
 
     .header-right {
@@ -102,7 +111,7 @@ const currDomain = computed(function ():string {
         font-weight: bold;
         margin: 10px 0;
         font-size: 14px;
-        color: #fff;
+        color: #0F0E0E;
         align-items: center;
         background: rgba(153, 153, 153, 0.2);
         backdrop-filter: blur(10px);
@@ -116,7 +125,7 @@ const currDomain = computed(function ():string {
           margin-right: 12px;
           path {
             transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-            fill: #fff
+            fill: #0F0E0E
           }
         }
 
@@ -141,6 +150,25 @@ const currDomain = computed(function ():string {
         svg {
           margin-right: 0;
         }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 954px) {
+    .page-header-a {
+      .logo {
+        .logo-wap {
+          display: block;
+        }
+        .logo-web {
+          display: none;
+        }
+      }
+    }
+
+    .connect-wallet {
+      svg path {
+        fill: #fff!important;
       }
     }
   }

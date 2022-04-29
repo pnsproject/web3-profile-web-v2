@@ -1,18 +1,18 @@
 <template>
-  <div id="GalaxyCredentials">
+  <div id="Domains">
     <div class="title">
       <div class="left">
-        <span class="text">Galaxy Credentials</span>
-        <span class="count"> {{ props.galaxyCredentialsList.length }}</span>
+        <span class="text">Domains</span>
+        <span class="count"> {{ props.domainsList.length }}</span>
       </div>
       <div class="right">
-        <EditBtn v-if="account.editable" @click="showWindow('EditGalaxyCredentials', {title:'My App', data: galaxyCredentialsList})" class="edit" />
+        <EditBtn v-if="account.editable" @click="showWindow('EditGalaxCredentials', {title:'My Domain', data: domainsList})" class="edit" />
       </div>
     </div>
     <div class="content">
       <Swiper :item-space="10"
               v-slot="item:SwiperSlotData"
-              :datalist="props.galaxyCredentialsList"
+              :datalist="props.domainsList"
               :page-size="100">
         <div class="nft-item">
           {{ item.data.name }}
@@ -28,11 +28,11 @@ import Swiper from '@/components/SwiperSmall/MainEntry.vue'
 import { account } from '@/state/account'
 import { showWindow } from '@/state/editWindows'
 
-const props = defineProps<{galaxyCredentialsList: Global.GalaxyCredentials[]}>()
+const props = defineProps<{domainsList: Global.GalaxyCredentials[]}>()
 </script>
 
 <style lang="less" scoped>
-#GalaxyCredentials {
+#Domains {
   margin-top: 30px;
   user-select: none;
   box-sizing: border-box;
@@ -94,7 +94,7 @@ const props = defineProps<{galaxyCredentialsList: Global.GalaxyCredentials[]}>()
 }
 
 @media only screen and (max-width: 954px) {
-  #GalaxyCredentials {
+  #Domains {
     width: 100vw;
     max-width: 388px;
     padding: 0 25px;

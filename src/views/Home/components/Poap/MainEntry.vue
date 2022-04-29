@@ -12,7 +12,7 @@
                   fill="#010008" />
           </svg>
         </span>
-        <EditBtn class="edit" />
+        <EditBtn v-if="account.editable" @click="showWindow('EditPOAP', {title:'My POAP', data: poapList})" class="edit" />
       </div>
     </div>
     <div class="content" :class="{ active }">
@@ -22,7 +22,26 @@
          :href="item.url"
          target="_blank"
          :title="item.title">
-        <img :src="item.image" :alt="item.title">
+        <div class="img">
+          <Thumbnail :image="item.image" :title="item.title" :error-text="false"></Thumbnail>
+        </div>
+      </a>
+    </div>
+    <div class="content2" :class="{ active }">
+      <a class="poap-item-2"
+         v-for="item in props.poapList"
+         :key="item.id"
+         :href="item.url"
+         target="_blank"
+         :title="item.title">
+        <div class="title">
+          <div class="img">
+            <Thumbnail :image="item.image" :title="item.title" :error-text="false"></Thumbnail>
+          </div>
+          <div class="tit">{{ item.title }}</div>
+        </div>
+        <div class="time">{{ item.published_at }}</div>
+        <div class="text">{{ item.content }}</div>
       </a>
     </div>
   </div>
@@ -30,7 +49,10 @@
 
 <script lang="ts" setup>
 import EditBtn from '@/components/EditBtn/MainEntry.vue'
+import Thumbnail from '@/components/Thumbnail/MainEntry.vue'
 import { computed, ref } from 'vue'
+import { account } from '@/state/account'
+import { showWindow } from '@/state/editWindows'
 
 const props = defineProps<{poapList: Global.Poap[]}>()
 
@@ -90,28 +112,9 @@ const contentHeight = computed(() => {
         transform: rotate(180deg);
       }
     }
-
-    .icons {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      opacity: 1;
-      transition: opacity 0.3s;
-
-      &.active {
-        opacity: 0;
-      }
-
-      img {
-        margin-left: 8px;
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-      }
-    }
   }
 
-  .app-item {
+  .poap-item {
     display: flex;
     flex-flow: row nowrap;
     margin-top: 16px;
@@ -121,9 +124,9 @@ const contentHeight = computed(() => {
     border-radius: 50%;
     margin-right: 13px;
 
-    img {
-      width: 100%;
-      height: 100%;
+    .img {
+      height: 57px;
+      width: 57px;
     }
   }
 
@@ -133,6 +136,69 @@ const contentHeight = computed(() => {
     display: flex;
     flex-flow: row wrap;
     align-content: baseline;
+
+    &.active {
+      display: none;
+    }
+  }
+
+  .content2 {
+    background: #F9F9FC;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 0 20px 20px 20px;
+    overflow: hidden;
+    flex-flow: column;
+    display: none;
+    margin-top: 14px;
+
+    &.active {
+      display: flex;
+    }
+
+    .poap-item-2 {
+      margin-top: 20px;
+
+      .title {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        color: #010008;
+
+        .img {
+          min-height: 57px;
+          min-width: 57px;
+          max-width: 57px;
+          max-height: 57px;
+          height: 57px;
+          width: 57px;
+          margin-right: 10px;
+          border-radius: 50%;
+          overflow: hidden;
+        }
+        .tit {
+          flex: 1;
+        }
+      }
+
+      .time {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        color: #89899A;
+        margin: 6px 0;
+      }
+
+      .text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        color: #89899A;
+      }
+    }
   }
 }
 
@@ -142,7 +208,7 @@ const contentHeight = computed(() => {
     max-width: 388px;
     padding: 0 25px;
 
-    .app-item:nth-child(5n) {
+    .poap-item:nth-child(5n) {
       margin-right: 0;
     }
   }

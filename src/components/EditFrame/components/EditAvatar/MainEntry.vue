@@ -1,6 +1,7 @@
 <template>
   <div id="EditAvatar">
     <div class="nft-list">
+      <Loading v-if="loading" />
       <div class="nft-item" v-for="(item, index) in NftList" :key="item.id">
         <div class="mark">{{ index }}</div>
         <Thumbnail :image="item.image" title="" :error-text="false"></Thumbnail>
@@ -22,7 +23,7 @@
       </div>
       <div class="btn-group">
         <Button :width="124" class="cancel-btn" @click="$emit('cancel')">Cancel</Button>
-        <Button :width="190" :loading="loading" type="primary" class="safe-btn">Save</Button>
+        <Button :width="190" :loading="saving" type="primary" class="safe-btn">Save</Button>
       </div>
     </div>
   </div>
@@ -32,47 +33,34 @@
 import Thumbnail from '@/components/Thumbnail/MainEntry.vue'
 import Button from '@/components/Button/MainEntry.vue'
 import { editWindows } from '@/state/editWindows'
+import Loading from '@/components/contentLoading/MainEntry.vue'
 import { ref } from 'vue'
+import axios from '@/plugins/axios'
 
 const emit = defineEmits(['cancel'])
 
 const editResult = ref(editWindows.option.data)
 
-const NftList = [
-  {
-    id: 123,
-    image: 'https://static.nftgo.io/asset/metadata/9c5a67e4bff73fcf2f6be8cdcd2a4de1.png'
-  },
-  {
-    id: 124,
-    image: 'https://byterum.mypinata.cloud/ipfs/Qmb4VB12RsXW6DaKranEdgnMUTzfyVBEb5eZ1v7JCEUxL1/'
-  },
-  {
-    id: 125,
-    image: 'https://tpc.googlesyndication.com/simgad/4152085755011562435?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&rs=AOga4qnkmPRZL3O36fhq7GiMEaImz83g7g'
-  },
-  {
-    id: 126,
-    image: 'https://s.cn.bing.net/th?id=OIP-C.XwJiMLu0DpoxS0xn74vDiAHaLG&w=204&h=305&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2'
-  },
-  {
-    id: 126,
-    image: 'https://s.cn.bing.net/th?id=OIP-C.XwJiMLu0DpoxS0xn74vDiAHaLG&w=204&h=305&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2'
-  }
-]
+const NftList = ref([])
 
 const loading = ref(true)
+
+const saving = ref(false)
 
 const deleteResult = (deleteId: number) => {
   editResult.value = editResult.value.filter((item: Global.NftThum) => {
     return item.id !== deleteId
   })
 }
+
+// const getNftList = () => {
+//   axios
+// }
 </script>
 
 <style lang="less" scoped>
 #EditAvatar {
-  width: 945px;
+  width: 954px;
   height: 100vh;
   margin: 0 auto;
   position: relative;

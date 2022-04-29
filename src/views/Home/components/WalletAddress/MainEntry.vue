@@ -15,7 +15,7 @@
                   fill="#010008" />
           </svg>
         </span>
-        <EditBtn class="edit" @click="gotoEdit"/>
+        <EditBtn v-if="account.editable" class="edit" @click="gotoEdit"/>
       </div>
     </div>
     <div class="content" :class="{ active }">
@@ -39,6 +39,8 @@ import CopyText from '@/components/CopyText/MainEntry.vue'
 import icons from './icons'
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { account } from '@/state/account'
+import { drive } from '@/state/mobileCheck'
 
 const props = defineProps<{address: Global.Addr[]}>()
 
@@ -51,7 +53,13 @@ const addressList = computed(() => {
 })
 
 const shortAdds = (address: string) => {
-  return address.substring(0, 15) + '...' + address.substr(-4)
+  if (drive.isMobile) {
+    return address.substring(0, 15) + '...' + address.substr(-4)
+  } else if (address.length > 42) {
+    return address.substring(0, 35) + '...' + address.substr(-4)
+  } else {
+    return address
+  }
 }
 
 const active = ref(false)

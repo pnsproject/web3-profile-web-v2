@@ -60,4 +60,15 @@ declare namespace Global {
     id: number;
     name: string;
   }
+
+  export type CollectionsList = {name: string, nft_assets:NftThum[]}[]
+
+  export interface Blog {
+    title: string;
+    external_link: string;
+    id: number;
+    image_url: string;
+    published_at: string;
+    read_cost_time: number
+  }
 }

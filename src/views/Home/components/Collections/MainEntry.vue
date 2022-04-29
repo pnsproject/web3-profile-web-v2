@@ -1,23 +1,25 @@
 <template>
-  <div id="GalaxyCredentials">
-    <div class="title">
-      <div class="left">
-        <span class="text">Galaxy Credentials</span>
-        <span class="count"> {{ props.galaxyCredentialsList.length }}</span>
-      </div>
-      <div class="right">
-        <EditBtn v-if="account.editable" @click="showWindow('EditGalaxyCredentials', {title:'My App', data: galaxyCredentialsList})" class="edit" />
-      </div>
-    </div>
-    <div class="content">
-      <Swiper :item-space="10"
-              v-slot="item:SwiperSlotData"
-              :datalist="props.galaxyCredentialsList"
-              :page-size="100">
-        <div class="nft-item">
-          {{ item.data.name }}
+  <div id="Collections">
+    <div class="nft-assets" v-for="(collect, index) in props.collectionsList" :key="index">
+      <div class="title">
+        <div class="left">
+          <span class="text">{{ collect.name }}</span>
+          <span class="count"> {{ collect.nft_assets.length }}</span>
         </div>
-      </Swiper>
+        <div class="right">
+          <EditBtn v-if="account.editable" class="edit" />
+        </div>
+      </div>
+      <div class="content">
+        <Swiper v-slot="item:SwiperSlotData"
+                :item-space="10"
+                :datalist="collect.nft_assets"
+                :page-size="100">
+          <div class="nft-item">
+            <Thumbnail :image="item.data.image" :error-text="false" :title="item.data.name" />
+          </div>
+        </Swiper>
+      </div>
     </div>
   </div>
 </template>
@@ -25,14 +27,14 @@
 <script lang="ts" setup>
 import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import Swiper from '@/components/SwiperSmall/MainEntry.vue'
+import Thumbnail from '@/components/Thumbnail/MainEntry.vue'
 import { account } from '@/state/account'
-import { showWindow } from '@/state/editWindows'
 
-const props = defineProps<{galaxyCredentialsList: Global.GalaxyCredentials[]}>()
+const props = defineProps<{collectionsList: Global.CollectionsList[]}>()
 </script>
 
 <style lang="less" scoped>
-#GalaxyCredentials {
+.nft-assets {
   margin-top: 30px;
   user-select: none;
   box-sizing: border-box;
@@ -73,15 +75,12 @@ const props = defineProps<{galaxyCredentialsList: Global.GalaxyCredentials[]}>()
   }
 
   .nft-item {
-    height: 36px;
-    line-height: 36px;
+    height: 90px;
+    width: 90px;
     background: #F9F9FC;
-    font-weight: 400;
-    font-size: 14px;
-    color: #89899A;
-    padding: 0 10px;
     border-radius: 4px;
     margin-top: 14px;
+    overflow: hidden;
   }
 
   .content {
@@ -94,7 +93,7 @@ const props = defineProps<{galaxyCredentialsList: Global.GalaxyCredentials[]}>()
 }
 
 @media only screen and (max-width: 954px) {
-  #GalaxyCredentials {
+  .nft-assets {
     width: 100vw;
     max-width: 388px;
     padding: 0 25px;
