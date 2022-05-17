@@ -36,7 +36,7 @@
 <script lang="ts" setup>
 import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import CopyText from '@/components/CopyText/MainEntry.vue'
-import icons from './icons'
+import icons, { IconType } from './icons'
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { account } from '@/state/account'
@@ -45,11 +45,14 @@ import { drive } from '@/state/mobileCheck'
 const props = defineProps<{address: Global.Addr[]}>()
 
 const addressList = computed(() => {
-  if (!props.address) return []
+  let res: Global.Addr[] = []
+  if (props.address) {
+    res = props.address.filter(item => {
+      return !!item.value
+    })
+  }
 
-  return props.address.filter(item => {
-    return !!item.value
-  })
+  return res
 })
 
 const shortAdds = (address: string) => {

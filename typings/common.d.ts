@@ -1,4 +1,6 @@
 declare namespace Global {
+  import { IconType } from '@/views/Home/components/WalletAddress/icons'
+
   export type TextRecordKey = 'email' | 'url' | 'avatar' | 'description' | 'notice' | 'keywords' | 'com.github' | 'com.twitter' | 'com.facebook' | 'com.linkedin'
 
   export type MediaItem = any
@@ -15,7 +17,7 @@ declare namespace Global {
   }
 
   export interface Addr {
-    key: TextRecordKey;
+    key: IconType;
     value: string;
   }
 
@@ -31,13 +33,13 @@ declare namespace Global {
     }
 
   export interface HomeData {
-    apps: NftThum[];
+    apps: App[];
     avatars: NftThum[];
-    collections: NftThum[];
+    collections: CollectionsList;
     domains: NftThum[];
-    galaxy_credentials: NftThum[];
-    mirror_blogs: NftThum[];
-    poaps: NftThum[];
+    galaxy_credentials: GalaxyCredentials[];
+    mirror_blogs: Blog[];
+    poaps: Poap[];
   }
 
   export interface App {

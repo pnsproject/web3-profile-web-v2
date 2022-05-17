@@ -9,7 +9,7 @@
 <script lang="ts" setup>
 import icons, { IconsType } from './setting/social_media_icons'
 import { computed } from 'vue'
-const props = defineProps<{type: IconsType, url: string}>()
+const props = defineProps<{type: string, url: string}>()
 
 const icon = computed(() => {
   return icons[props.type]

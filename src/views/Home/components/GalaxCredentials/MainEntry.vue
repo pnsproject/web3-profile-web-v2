@@ -28,6 +28,8 @@ import Swiper from '@/components/SwiperSmall/MainEntry.vue'
 import { account } from '@/state/account'
 import { showWindow } from '@/state/editWindows'
 
+type SwiperSlotData = any
+
 const props = defineProps<{galaxyCredentialsList: Global.GalaxyCredentials[]}>()
 </script>
 

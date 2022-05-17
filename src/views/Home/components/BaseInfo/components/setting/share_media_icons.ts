@@ -9,12 +9,16 @@ import telegram1 from '../assets/icons_b/telegram1.svg'
 import mail from '../assets/icons_b/mail.svg'
 import mail1 from '../assets/icons_b/mail1.svg'
 
+// interface Icons {
+//   facebook:any
+//   twitter:any
+//   mail:any
+//   telegram:any
+//   copy:any
+// }
+
 interface Icons {
-  facebook:any
-  twitter:any
-  mail:any
-  telegram:any
-  copy:any
+  [key: string]: any
 }
 
 const icons: Icons = {
@@ -25,6 +29,7 @@ const icons: Icons = {
   copy: [copy, copy1, 'Copy']
 }
 
-export type IconsType = keyof Icons
+// export type IconsType = keyof Icons
+export type IconsType = string
 
 export default icons

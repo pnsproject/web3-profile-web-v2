@@ -4,7 +4,7 @@
       <Loading v-if="loading" />
       <div class="nft-item" v-for="(item, index) in NftList" :key="item.id">
         <div class="mark">{{ index }}</div>
-        <Thumbnail :image="item.image" title="" :error-text="false"></Thumbnail>
+        <Thumbnail :image="item.image_url" title="" :error-text="false"></Thumbnail>
       </div>
     </div>
     <div class="footer">
@@ -41,7 +41,7 @@ const emit = defineEmits(['cancel'])
 
 const editResult = ref(editWindows.option.data)
 
-const NftList = ref([])
+const NftList = ref<Global.NftThum[]>([])
 
 const loading = ref(true)
 

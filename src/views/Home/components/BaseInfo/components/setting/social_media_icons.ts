@@ -9,12 +9,16 @@ import Mail2 from '../assets/icons_a/Mail-1.svg'
 import Share from '../assets/icons_a/Share.svg'
 import Share2 from '../assets/icons_a/Share-1.svg'
 
+// interface Icons {
+//   'com.facebook':any
+//   'com.github':any
+//   Ins:any
+//   email:any
+//   Share:any
+// }
+
 interface Icons {
-  'com.facebook':any
-  'com.github':any
-  Ins:any
-  email:any
-  Share:any
+  [key: string]: any
 }
 
 const icons: Icons = {

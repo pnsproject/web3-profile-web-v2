@@ -30,7 +30,9 @@ import Swiper from '@/components/SwiperSmall/MainEntry.vue'
 import Thumbnail from '@/components/Thumbnail/MainEntry.vue'
 import { account } from '@/state/account'
 
-const props = defineProps<{collectionsList: Global.CollectionsList[]}>()
+type SwiperSlotData = any
+
+const props = defineProps<{collectionsList: Global.CollectionsList}>()
 </script>
 
 <style lang="less" scoped>

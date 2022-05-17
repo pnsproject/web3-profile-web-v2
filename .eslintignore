@@ -3,3 +3,4 @@ pns-sdk-build/*
 tests/*
 src/sdkLib/*
 public/*
+typings/*

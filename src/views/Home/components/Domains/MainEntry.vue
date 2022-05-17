@@ -27,8 +27,11 @@ import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import Swiper from '@/components/SwiperSmall/MainEntry.vue'
 import { account } from '@/state/account'
 import { showWindow } from '@/state/editWindows'
+import { type } from 'os'
 
-const props = defineProps<{domainsList: Global.GalaxyCredentials[]}>()
+type SwiperSlotData = any
+
+const props = defineProps<{domainsList: Global.NftThum[]}>()
 </script>
 
 <style lang="less" scoped>

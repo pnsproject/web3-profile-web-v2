@@ -1,5 +1,20 @@
 <template>
-  <PageLoading v-if="loading"></PageLoading>
+  <LayoutA v-if="true">
+    <div class="main-contain" :class="{mobile: isMobile}">
+      <div class="contain-row">
+        <div class="avatar">
+          <UserDefaultAvatar :domain="'asdasdasdasdasd.dot'"></UserDefaultAvatar>
+          <AvatarLoading />
+        </div>
+        <div class="contains">
+          <ContentLoading></ContentLoading>
+          <ContentLoading></ContentLoading>
+          <ContentLoading></ContentLoading>
+        </div>
+      </div>
+    </div>
+  </LayoutA>
+
   <LayoutA v-else>
     <div class="main-contain" :class="{mobile: isMobile}">
       <div class="contain-row">
@@ -23,9 +38,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineAsyncComponent, ref } from 'vue'
+import { computed, defineAsyncComponent, ref, watch } from 'vue'
 import LayoutA from '@/layouts/LayoutA.vue'
-import PageLoading from '@/components/PageLoading/MainEntry.vue'
 import { drive } from '@/state/mobileCheck'
 import AvatarNft from './components/AvatarNFT/MainEntry.vue'
 import BaseInfo from './components/BaseInfo/MainEntry.vue'
@@ -36,10 +50,13 @@ import GalaxCredentials from './components/GalaxCredentials/MainEntry.vue'
 import Domains from './components/Domains/MainEntry.vue'
 import Collections from './components/Collections/MainEntry.vue'
 import MirrorBlog from './components/MirrorBlog/MainEntry.vue'
+import AvatarLoading from '@/components/PageLoadingV2/AvatarLoading.vue'
+import ContentLoading from '@/components/PageLoadingV2/ContentLoading.vue'
+import UserDefaultAvatar from '@/components/UserDefaultAvatar/MainEntry.vue'
 import axios from '@/plugins/axios'
 import { getDomainDetails, setup } from 'pns-sdk'
-import { useRoute } from 'vue-router'
-import { switchChain, setDomainInfo } from '@/state/account'
+import { useRoute, useRouter } from 'vue-router'
+import { switchChain, setDomainInfo, account } from '@/state/account'
 import useMessage from '@/plugins/useMessage'
 
 const EditFrame = defineAsyncComponent(() => import('@/components/EditFrame/MainEntry.vue'))
@@ -47,6 +64,8 @@ const EditFrame = defineAsyncComponent(() => import('@/components/EditFrame/Main
 const loading = ref(true)
 
 const $route = useRoute()
+
+const $router = useRouter()
 
 const currDomain = computed(function ():string {
   // return document.domain
@@ -77,7 +96,12 @@ const homeData = ref<Global.HomeData>({
 })
 
 const getHomeData = async () => {
-  const res = await axios.get('/api/homes/all')
+  const res = await axios.get(`/api/homes/all?eth_address=${account.domainOwner}`)
+  if (res.data.message === 'account not exist') {
+    // $router.push('/notfound')
+    throw new Error('account not found')
+  }
+
   homeData.value = res.data.result
   console.log('homeData', res.data.result)
 }
@@ -103,20 +127,18 @@ const getDomainDetail = async () => {
 }
 
 const getData = async () => {
-  Promise.all([getHomeData(), getDomainDetail()])
-    .then(() => {
-      loading.value = false
-    })
-    .catch(e => {
-      useMessage('error', e.message)
-      console.error(e)
-    })
-    // .finally(() => {
-    //   loading.value = false
-    // })
+  try {
+    await getDomainDetail()
+    await getHomeData()
+    loading.value = false
+  } catch (e) {
+    console.log(e)
+  }
 }
 
-getData()
+watch(currDomain, (val) => {
+  getData()
+}, { immediate: true })
 </script>
 
 <style lang="less" scoped>

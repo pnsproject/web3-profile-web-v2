@@ -3,14 +3,11 @@ import ETH from './assets/eth.svg'
 import KSM from './assets/kusama.svg'
 import DOT from './assets/polkadot.svg'
 
-export interface Icons {
-  BTC: any
-  ETH: any
-  KSM: any
-  DOT: any
-}
+export type IconType = 'BTC' | 'ETH' | 'KSM' | 'DOT'
 
-export type IconType = keyof Icons
+export type Icons = {
+  [key: string] : any
+}
 
 const icons: Icons = {
   BTC: [BTC, '#FFEDDF', '#DC8027'],
