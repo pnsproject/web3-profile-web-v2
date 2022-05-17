@@ -73,4 +73,6 @@ declare namespace Global {
     published_at: string;
     read_cost_time: number
   }
+
+  export type NftItem= any
 }

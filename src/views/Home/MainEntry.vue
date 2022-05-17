@@ -3,7 +3,6 @@
     <div class="main-contain" :class="{mobile: isMobile}">
       <div class="contain-row">
         <div class="avatar">
-          <UserDefaultAvatar :domain="'asdasdasdasdasd.dot'"></UserDefaultAvatar>
           <AvatarLoading />
         </div>
         <div class="contains">
@@ -19,7 +18,8 @@
     <div class="main-contain" :class="{mobile: isMobile}">
       <div class="contain-row">
         <div class="avatar">
-          <AvatarNft :nft-list="homeData.avatars"></AvatarNft>
+          <AvatarNft v-if="homeData.avatars.length" :nft-list="homeData.avatars" ></AvatarNft>
+          <UserDefaultAvatar v-else :domain="'zoufangda.dot'"></UserDefaultAvatar>
         </div>
         <div class="contains">
           <BaseInfo :detail="domainDetail" />
@@ -98,7 +98,7 @@ const homeData = ref<Global.HomeData>({
 const getHomeData = async () => {
   const res = await axios.get(`/api/homes/all?eth_address=${account.domainOwner}`)
   if (res.data.message === 'account not exist') {
-    // $router.push('/notfound')
+    $router.push('/notfound')
     throw new Error('account not found')
   }
 
