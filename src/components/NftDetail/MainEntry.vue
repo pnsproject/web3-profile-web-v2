@@ -1,7 +1,7 @@
 <template>
   <div class="nft-detail" v-if="show">
     <div class="detail-window" :class="{active: contentActive}" :style="{ width : width }">
-      <Thumbnail :nft="nft.info" :size="['420px', '420px']" class="thumbnail" v-if="!isMobile"></Thumbnail>
+<!--      <Thumbnail :nft="nft.info" :size="['420px', '420px']" class="thumbnail" v-if="!isMobile"></Thumbnail>-->
       <div class="detail">
         <div class="handle">
           <span >NFT DETAILS</span>
