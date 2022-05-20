@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "cross-env NODE_ENV=pro vue-tsc --noEmit --skipLibCheck && vite build",
+    "build": "vue-tsc --noEmit --skipLibCheck && vite build",
     "preview": "vite preview",
     "lint": "eslint src/**/*.{js,vue,ts} --fix",
     "lint:create": "eslint --init"

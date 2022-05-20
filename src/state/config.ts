@@ -1,10 +1,10 @@
 export type PnsChainId = 1284 | 43113
 
-console.log('NODE_ENV', process.env.NODE_ENV)
+console.log('NODE_ENV', import.meta.env.MODE)
 export default {
-  apiUrl: 'https://polkanode.pns.link',
-  ipfsGateway: 'https://byterum.mypinata.cloud/ipfs/',
-  pnsUrl: 'https://pns-landing-test1.vercel.app',
+  apiUrl: import.meta.env.VITE_API_URI || '',
+  ipfsGateway: import.meta.env.VITE_IPFS_GATEWAY || '',
+  pnsUrl: import.meta.env.VITE_PNS_URL || '',
   scrollBarWidth: 8,
   nftApps: {
     ensContract: '0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85'
@@ -33,5 +33,5 @@ export default {
       blockExplorerUrls: ['https://cchain.explorer.avax-test.network']
     }
   },
-  pnsChainId: 1284
+  pnsChainId: Number(import.meta.env.VITE_DEFAULT_CHAIN || 1284)
 }

@@ -15,4 +15,10 @@
     border-radius: 16px;
     margin-bottom: 58px;
   }
+
+  @media only screen and (max-width: 954px) {
+    .avatar-loading {
+      border-radius: 0;
+    }
+  }
 </style>

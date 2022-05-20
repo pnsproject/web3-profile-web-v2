@@ -118,7 +118,6 @@ const currDomain = computed(function ():string {
         line-height: 37px;
         user-select: none;
         cursor: pointer;
-        box-shadow: 0 3px 6px rgb(0 0 0 / 8%);
         transition: background 0.3s cubic-bezier(0.23, 1, 0.32, 1), color 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 
         svg {
@@ -144,6 +143,7 @@ const currDomain = computed(function ():string {
 
     &.mobile {
       .connect-wallet {
+        box-shadow: 0 3px 6px rgb(0 0 0 / 8%);
         span {
           display: none;
         }
