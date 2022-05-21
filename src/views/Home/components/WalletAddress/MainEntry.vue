@@ -1,5 +1,5 @@
 <template>
-  <div id="WalletAddress">
+  <div id="WalletAddress" v-if="addressList.length">
     <div class="title">
       <div class="left">
         <span class="text">Address</span>

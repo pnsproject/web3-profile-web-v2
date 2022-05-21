@@ -1,0 +1,67 @@
+#MessageList {
+  position: fixed;
+  right: 30px;
+  top: 50px;
+  width: 360px;
+  height: auto;
+  z-index: 9999;
+
+  .app-message {
+    position: absolute;
+    width: 360px;
+    background-color: #fff;
+    transform: translateX(110%);
+    transition: all 0.3s;
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 12px;
+    border-radius: 18px;
+    box-shadow: 0 0 5px #ddd;
+    align-items: center;
+    margin-top: 8px;
+    top: 0;
+
+    .text {
+      font-size: 16px;
+    }
+
+    &.success .text {
+      color: #22852d
+    }
+
+    &.warn .text {
+      color: #bc7315
+    }
+
+    &.error .text {
+      color: #840303
+    }
+
+    &.success:before {
+      margin-right: 10px;
+      display: block;
+    }
+
+    &.info:before {
+      content: url("/message/info.svg");
+      margin-right: 10px;
+      display: block;
+    }
+
+    &.warn:before {
+      content: url("/message/warn.svg");
+      margin-right: 10px;
+      display: block;
+    }
+
+    &.error:before {
+      content: url(/message/error.svg);
+      margin-right: 10px;
+      display: block;
+    }
+
+    &.active {
+      transform: translateX(0);
+    }
+  }
+}

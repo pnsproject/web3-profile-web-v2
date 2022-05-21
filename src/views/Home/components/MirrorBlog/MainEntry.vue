@@ -1,5 +1,5 @@
 <template>
-  <div id="MirrorBlog">
+  <div id="MirrorBlog" v-if="props.blogList.length">
     <div class="title">
       <div class="left">
         <span class="text">Mirror Blog</span>

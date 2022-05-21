@@ -1,13 +1,13 @@
 <template>
   <div id="Apps">
-    <div class="title">
+    <div class="title" v-if="appList.length">
       <div class="left">
         <span class="text">App</span>
         <span class="count"> {{ appList.length }}</span>
       </div>
       <div class="right">
         <span class="icons" :class="{ active }">
-          <img v-for="item in appList" :key="item.id" :src="item.icon" :alt="item.icon">
+          <img v-for="item in appThumbnail" :key="item.id" :src="item.icon" :alt="item.icon">
         </span>
         <span class="handel" :class="{ active }" @click="active = !active">
           <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,6 +43,12 @@ const active = ref(false)
 
 const contentHeight = computed(() => {
   return Math.ceil(props.appList.length / 5) * 73 + 'px'
+})
+
+const appThumbnail = computed(() => {
+  return props.appList.filter((item, index) => {
+    return index < 5
+  })
 })
 </script>
 

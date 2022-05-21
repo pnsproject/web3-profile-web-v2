@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<{text: string, height: string | number}>(), { text: '', height: 100 })
 
@@ -20,6 +20,16 @@ const trigger = () => {
 const lackOfText = ref(false)
 
 const content = ref<HTMLElement>()
+
+watch(props, (newVal) => {
+  if (content.value) {
+    const contentHeight = content.value.offsetHeight
+    console.log('contentHeight', contentHeight)
+    if (contentHeight < Number(props.height)) {
+      lackOfText.value = true
+    }
+  }
+}, { immediate: true })
 
 onMounted(() => {
   console.log(content.value)
@@ -45,7 +55,7 @@ onMounted(() => {
     }
 
     .trigger-active {
-      background: #fff;
+      background: #000;
       position: absolute;
       right: 0;
       bottom: 0;

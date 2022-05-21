@@ -1,5 +1,5 @@
 <template>
-  <div id="GalaxyCredentials">
+  <div id="GalaxyCredentials" v-if="props.galaxyCredentialsList.length">
     <div class="title">
       <div class="left">
         <span class="text">Galaxy Credentials</span>

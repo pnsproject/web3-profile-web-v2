@@ -1,13 +1,14 @@
 <template>
-  <a class="share-media" href="#">
+  <div class="share-media" @click="methods[props.type]()">
     <img class="normal" :src="icon[0]" :alt="props.type">
     <img class="active" :src="icon[1]" :alt="props.type">
     <span>{{ icon[2] }}</span>
-  </a>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import icons, { IconsType } from './setting/share_media_icons'
+import methods from './setting/share_media_method'
 import { computed } from 'vue'
 const props = defineProps<{type: IconsType}>()
 

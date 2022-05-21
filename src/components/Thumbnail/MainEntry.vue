@@ -2,6 +2,8 @@
   <div class="nft-thumbnail" :style="{width: '100%', height: '100%'}" ref="box">
     <img :src="appLoading" alt="loading" v-if="loading " class="loading">
 
+    <img v-if="noImage" :src="appLoading"  :alt="props.title" class="default">
+
     <video v-show="mp4Thumbnail && !showError"
            ref="videoItem"
            :src="mp4Thumbnail"
@@ -45,6 +47,8 @@ const loading = ref(true)
 
 const showError = ref(false)
 
+const noImage = ref(false)
+
 // svg预览
 const svgThumbnail = ref('')
 
@@ -56,6 +60,13 @@ const thumbnail = ref('')
 
 // 处理预览图
 const processThumbnail = () => {
+  console.log(props)
+
+  if (!props.image) {
+    noImage.value = true
+    loading.value = false
+    return
+  }
   // svg
   if (props.image.startsWith('data:image/svg+xml;utf8,<svg')) {
     svgThumbnail.value = props.image.replace('data:image/svg+xml;utf8,', '')
@@ -72,7 +83,7 @@ const processThumbnail = () => {
 
   // ipfs or https
   if (props.image && props.image.startsWith('ipfs://')) {
-    thumbnail.value = props.image.replace('ipfs://', appConfig.ipfsGateway)
+    thumbnail.value = props.image.replace('ipfs://', appConfig.ipfsGateway as string)
   } else {
     thumbnail.value = props.image
   }
@@ -126,7 +137,6 @@ const videoloaded = (e: any) => {
 .nft-thumbnail {
   position: relative;
   overflow: hidden;
-  background: #FCFCFC;
 
   .center {
     position: absolute;

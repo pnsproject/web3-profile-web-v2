@@ -1,5 +1,5 @@
 <template>
-  <LayoutA v-if="true">
+  <LayoutA v-if="loading">
     <div class="main-contain" :class="{mobile: isMobile}">
       <div class="contain-row">
         <div class="avatar">
@@ -34,6 +34,7 @@
       </div>
     </div>
     <component :is="EditFrame" />
+    <NftDetail />
   </LayoutA>
 </template>
 
@@ -53,6 +54,7 @@ import MirrorBlog from './components/MirrorBlog/MainEntry.vue'
 import AvatarLoading from '@/components/PageLoadingV2/AvatarLoading.vue'
 import ContentLoading from '@/components/PageLoadingV2/ContentLoading.vue'
 import UserDefaultAvatar from '@/components/UserDefaultAvatar/MainEntry.vue'
+import NftDetail from '@/components/NftDetail/MainEntry.vue'
 import axios from '@/plugins/axios'
 import { getDomainDetails, setup } from 'pns-sdk'
 import { useRoute, useRouter } from 'vue-router'
@@ -96,7 +98,8 @@ const homeData = ref<Global.HomeData>({
 })
 
 const getHomeData = async () => {
-  const res = await axios.get(`/api/homes/all?eth_address=${account.domainOwner}`)
+  // const res = await axios.get(`/api/homes/all?eth_address=${account.domainOwner}`)
+  const res = await axios.get('/api/homes/all?eth_address=0x1C4E1D79049Dae82a901Ae501B0847d197395f47')
   if (res.data.message === 'account not exist') {
     $router.push('/notfound')
     throw new Error('account not found')

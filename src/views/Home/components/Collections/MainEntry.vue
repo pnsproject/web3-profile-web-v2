@@ -1,6 +1,8 @@
 <template>
-  <div id="Collections">
-    <div class="nft-assets" v-for="(collect, index) in props.collectionsList" :key="index">
+  <div id="Collections" v-if="props.collectionsList.length">
+    <div class="nft-assets"
+         v-for="(collect, index) in props.collectionsList"
+         :key="index">
       <div class="title">
         <div class="left">
           <span class="text">{{ collect.name }}</span>
@@ -15,7 +17,7 @@
                 :item-space="10"
                 :datalist="collect.nft_assets"
                 :page-size="100">
-          <div class="nft-item">
+          <div class="nft-item" @click="showDetail(item.data.id)">
             <Thumbnail :image="item.data.image" :error-text="false" :title="item.data.name" />
           </div>
         </Swiper>
@@ -28,11 +30,14 @@
 import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import Swiper from '@/components/SwiperSmall/MainEntry.vue'
 import Thumbnail from '@/components/Thumbnail/MainEntry.vue'
+import { showDialog } from '@/state/nftDetail'
 import { account } from '@/state/account'
 
 type SwiperSlotData = any
 
 const props = defineProps<{collectionsList: Global.CollectionsList}>()
+
+const showDetail = (assetsId: string) => showDialog(assetsId)
 </script>
 
 <style lang="less" scoped>
@@ -40,6 +45,7 @@ const props = defineProps<{collectionsList: Global.CollectionsList}>()
   margin-top: 30px;
   user-select: none;
   box-sizing: border-box;
+  cursor: pointer;
 
   .title {
     display: flex;

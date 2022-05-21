@@ -74,5 +74,12 @@ declare namespace Global {
     read_cost_time: number
   }
 
-  export type NftItem= any
+  export interface NftItem  {
+    chain_id: number;
+    contract: any;
+    external_url: string;
+    id: number;
+    image_url: string
+    token_id:string
+  }
 }

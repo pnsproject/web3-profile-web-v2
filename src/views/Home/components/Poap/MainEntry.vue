@@ -1,5 +1,5 @@
 <template>
-  <div id="POAP">
+  <div id="POAP" v-if="props.poapList.length">
     <div class="title">
       <div class="left">
         <span class="text">POAP</span>
