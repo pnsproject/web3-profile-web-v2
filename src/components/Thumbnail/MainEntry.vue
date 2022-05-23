@@ -83,7 +83,7 @@ const processThumbnail = () => {
 
   // ipfs or https
   if (props.image && props.image.startsWith('ipfs://')) {
-    thumbnail.value = props.image.replace('ipfs://', (appConfig.ipfsGateway as string) + '/')
+    thumbnail.value = props.image.replace('ipfs://', (appConfig.ipfsGateway as string) + '/ipfs/')
   } else {
     thumbnail.value = props.image
   }
