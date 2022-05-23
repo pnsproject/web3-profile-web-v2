@@ -10,7 +10,10 @@
       </div>
       <div class="detail">
         <div class="des">
-          <div class="tit">{{ `${nft.contract.name} #${nft.id}`}}</div>
+          <div class="tit">
+            {{ `${nft.contract.name} #${nft.token_id}`}}
+            <img class="chain-icon" :src="chainIcons[nft.chain_id]" alt="">
+          </div>
           <FlexibleText
             class="des-text"
             height="60"
@@ -32,6 +35,7 @@ import FlexibleText from '@/components/FlexibleText/MainEntry.vue'
 import NftInfoList from './NftInfoList.vue'
 import PageLoading from '@/components/PageLoading/MainEntry.vue'
 import { nftDetailDialog, closeDialog } from '@/state/nftDetail'
+import chainIcons from './chianIncons'
 
 const show = computed(() => {
   return nftDetailDialog.show
@@ -180,6 +184,11 @@ watch(loading, (newVal) => {
           margin-bottom: 10px;
           margin-top: 32px;
           word-break: break-all;
+
+          .chain-icon {
+            width: 24px;
+            height: 24px;
+          }
         }
 
         .list {

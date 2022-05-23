@@ -1,7 +1,8 @@
 #MessageList {
   position: fixed;
-  right: 30px;
   top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 360px;
   height: auto;
   z-index: 9999;
@@ -10,31 +11,42 @@
     position: absolute;
     width: 360px;
     background-color: #fff;
-    transform: translateX(110%);
     transition: all 0.3s;
     display: flex;
     flex-flow: row nowrap;
     padding: 12px;
-    border-radius: 18px;
+    border-radius: 12px;
     box-shadow: 0 0 5px #ddd;
     align-items: center;
     margin-top: 8px;
     top: 0;
+    box-sizing: border-box;
 
     .text {
       font-size: 16px;
     }
 
-    &.success .text {
-      color: #22852d
+    &.success {
+      border: 1px solid #22852d;
+      .text {
+        color: #22852d
+      }
     }
 
-    &.warn .text {
-      color: #bc7315
+    &.warn {
+      border: 1px solid #bc7315;
+      .text {
+        color: #bc7315
+      }
     }
 
-    &.error .text {
-      color: #840303
+    &.error {
+      border: 1px solid #D2504E;
+      box-shadow: 0 8px 16px rgba(206, 43, 40, 0.06);
+      background: #FFF8F8;
+      .text {
+        color: #D2504E
+      }
     }
 
     &.success:before {
@@ -44,24 +56,30 @@
 
     &.info:before {
       content: url("/message/info.svg");
-      margin-right: 10px;
+      margin-right: 8px;
       display: block;
+      width: 32px;
+      height: 32px;
     }
 
     &.warn:before {
       content: url("/message/warn.svg");
-      margin-right: 10px;
+      margin-right: 8px;
       display: block;
+      width: 32px;
+      height: 32px;
     }
 
     &.error:before {
-      content: url(/message/error.svg);
-      margin-right: 10px;
+      content: '🤕';
+      margin-right: 8px;
       display: block;
+      width: 24px;
+      height: 24px;
     }
 
     &.active {
-      transform: translateX(0);
+      top: 30%
     }
   }
 }

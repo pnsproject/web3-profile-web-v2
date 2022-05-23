@@ -19,7 +19,7 @@ const useMessage = function (type: MsgType = 'info', msg: string) {
   messageList.append(messageItem)
   if (messageItemList.length) {
     messageItemList.forEach((item, index) => {
-      (item as any).style.bottom = Number((item as any).style.bottom.replace('px', '')) + messageItem.clientHeight + 12 + 'px'
+      (item as any).style.top = Number((item as any).style.top.replace('px', '')) + messageItem.clientHeight + 12 + 'px'
     })
   }
   setTimeout(() => {

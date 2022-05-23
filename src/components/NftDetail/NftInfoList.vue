@@ -39,6 +39,11 @@
       <div class="val"><Linker :to="transactionLink"></Linker></div>
     </div>
 
+    <div class="info-item">
+      <div class="tit">External Url</div>
+      <div class="val"><Linker :to="props.nft.external_url"></Linker></div>
+    </div>
+
   </div>
 </template>
 
@@ -96,6 +101,8 @@ const transactionLink = computed(() => {
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
+      max-width: 200px;
+      word-break: break-all;
 
       & > * {
         margin-left: 14px;

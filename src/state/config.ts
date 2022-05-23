@@ -5,10 +5,8 @@ export default {
   apiUrl: import.meta.env.VITE_API_URI || '',
   ipfsGateway: import.meta.env.VITE_IPFS_GATEWAY || '',
   pnsUrl: import.meta.env.VITE_PNS_URL || '',
+  ensUrl: 'https://app.ens.domains',
   scrollBarWidth: 8,
-  nftApps: {
-    ensContract: '0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85'
-  },
   chains: {
     1284: {
       chainId: '0x' + (1284).toString(16),

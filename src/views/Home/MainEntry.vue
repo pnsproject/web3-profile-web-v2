@@ -135,6 +135,7 @@ const getData = async () => {
     await getHomeData()
     loading.value = false
   } catch (e) {
+    useMessage('error', 'An error occurred, please try again later.')
     console.log(e)
   }
 }

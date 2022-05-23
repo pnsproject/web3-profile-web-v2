@@ -1,5 +1,5 @@
 <template>
-  <div id="Apps">
+  <div id="Apps" v-if="false">
     <div class="title" v-if="appList.length">
       <div class="left">
         <span class="text">App</span>

@@ -14,7 +14,7 @@
               v-slot="item:SwiperSlotData"
               :datalist="props.domainsList"
               :page-size="100">
-        <div class="nft-item">
+        <div class="nft-item" @click="goToDetail(item.data.name)">
           {{ item.data.name }}
         </div>
       </Swiper>
@@ -27,11 +27,19 @@ import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import Swiper from '@/components/SwiperSmall/MainEntry.vue'
 import { account } from '@/state/account'
 import { showWindow } from '@/state/editWindows'
-import { type } from 'os'
+import config from '@/state/config'
 
 type SwiperSlotData = any
 
 const props = defineProps<{domainsList: Global.NftThum[]}>()
+
+const goToDetail = (name: string) => {
+  if (name.endsWith('.dot')) {
+    window.open(`${config.pnsUrl}/details/${name}`, '_blank')
+  } else {
+    window.open(`${config.ensUrl}/name/${name}`, '_blank')
+  }
+}
 </script>
 
 <style lang="less" scoped>
