@@ -60,8 +60,6 @@ const thumbnail = ref('')
 
 // 处理预览图
 const processThumbnail = () => {
-  console.log(props)
-
   if (!props.image) {
     noImage.value = true
     loading.value = false

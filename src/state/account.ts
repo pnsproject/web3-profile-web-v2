@@ -17,12 +17,34 @@ export const account: Account = reactive({
   editable: false
 })
 
-export const setDomainInfo = (currDomain: string, domainOwner: string) => {
-  account.domainOwner = domainOwner
-  account.currDomain = currDomain
+export const getQueryString = function (name: string) {
+  const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
+  const r = window.location.search.substr(1).match(reg)
+  if (r != null) {
+    return decodeURIComponent(r[2])
+  }
+  return null
 }
 
-declare const window: { ethereum: any; web3: any}
+const initCurrDomain = function () {
+  const domain = document.domain
+
+  if (domain === 'localhost') {
+    const queryDomain = getQueryString('domain')
+    account.currDomain = queryDomain || 'zoufangda01.dot'
+    return
+  }
+
+  account.currDomain = domain.split('.')[0] + '.dot'
+}
+
+initCurrDomain()
+
+export const setOwner = (domainOwner: string) => {
+  account.domainOwner = domainOwner
+}
+
+declare const window: { ethereum: any; web3: any; location:any}
 
 export const connect = async () => {
   if (window.ethereum) {

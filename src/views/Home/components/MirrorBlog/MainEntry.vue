@@ -26,7 +26,7 @@
           <div class="time">{{ item.published_at }}</div>
         </div>
         <div class="img">
-          <Thumbnail :image="item.image_url" :title="item.title" :error-text="false"></Thumbnail>
+          <Thumbnail :image="item.image_url ? item.image_url : defaultPic" :title="item.title" :error-text="false"></Thumbnail>
         </div>
       </a>
     </div>
@@ -36,6 +36,7 @@
 <script lang="ts" setup>
 import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import Thumbnail from '@/components/Thumbnail/MainEntry.vue'
+import defaultPic from './assets/mirror_blog.png'
 import { computed, ref } from 'vue'
 import { account } from '@/state/account'
 
@@ -107,6 +108,7 @@ const contentHeight = computed(() => {
         margin-left: 41px;
         border-radius: 2px;
         overflow: hidden;
+        border: 1px solid #F9F9FC;
       }
 
       .blog-title {

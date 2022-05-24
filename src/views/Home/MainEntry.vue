@@ -58,7 +58,7 @@ import NftDetail from '@/components/NftDetail/MainEntry.vue'
 import axios from '@/plugins/axios'
 import { getDomainDetails, setup } from 'pns-sdk'
 import { useRoute, useRouter } from 'vue-router'
-import { switchChain, setDomainInfo, account } from '@/state/account'
+import { switchChain, setOwner, account } from '@/state/account'
 import useMessage from '@/plugins/useMessage'
 
 const EditFrame = defineAsyncComponent(() => import('@/components/EditFrame/MainEntry.vue'))
@@ -70,17 +70,7 @@ const $route = useRoute()
 const $router = useRouter()
 
 const currDomain = computed(function ():string {
-  // return document.domain
-  const query = $route.query.name
-  if (query) {
-    if (Array.isArray(query) && query[0]) {
-      return query[0].toString()
-    } else {
-      return query as string
-    }
-  }
-
-  return 'zoufangda01.dot'
+  return account.currDomain
 })
 
 const isMobile = computed(() => {
@@ -126,7 +116,7 @@ const getDomainDetail = async () => {
   const res: any = await getDomainDetails(currDomain.value)
   domainDetail.value = res
   console.log('domainDetail', res)
-  setDomainInfo(currDomain.value, res.owner)
+  setOwner(res.owner)
 }
 
 const getData = async () => {

@@ -93,6 +93,7 @@ const goToDetail = (name: string) => {
     padding: 0 10px;
     border-radius: 4px;
     margin-top: 14px;
+    cursor: pointer;
   }
 
   .content {

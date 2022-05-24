@@ -23,7 +23,6 @@ import Logo from '@/assets/logo.svg'
 import Logo2 from '@/assets/logo2.svg'
 import appConfig from '../../state/config'
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import { drive } from '@/state/mobileCheck'
 import { account, connect } from '@/state/account'
 import Identicoin from './Identicoin.vue'
@@ -36,21 +35,8 @@ const isMobile = computed(() => {
   return drive.isMobile
 })
 
-const $route = useRoute()
-// 获取域名
-
-const currDomain = computed(function ():string {
-  // return document.domain
-  const query = $route.query.name
-  if (query) {
-    if (Array.isArray(query) && query[0]) {
-      return query[0].toString()
-    } else {
-      return query as string
-    }
-  }
-
-  return 'zoufangda01.dot'
+const currDomain = computed(() => {
+  return account.currDomain
 })
 </script>
 

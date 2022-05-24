@@ -105,23 +105,14 @@
 import Header from '@/components/Header/MainEntry.vue'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
+import { account } from '@/state/account'
 import appConfig from '../../state/config'
 
 const $route = useRoute()
 
 // 获取域名
 const currDomain = computed(function ():string {
-  // return document.domain
-  const query = $route.query.name
-  if (query) {
-    if (Array.isArray(query) && query[0]) {
-      return query[0].toString()
-    } else {
-      return query as string
-    }
-  }
-
-  return ''
+  return account.currDomain
 })
 
 const pnsUrl = computed(() => {

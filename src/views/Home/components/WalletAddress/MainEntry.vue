@@ -38,7 +38,6 @@ import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import CopyText from '@/components/CopyText/MainEntry.vue'
 import icons, { IconType } from './icons'
 import { computed, ref } from 'vue'
-import { useRoute } from 'vue-router'
 import { account } from '@/state/account'
 import { drive } from '@/state/mobileCheck'
 
@@ -71,22 +70,9 @@ const contentHeight = computed(() => {
   return addressList.value.length * 46 + 'px'
 })
 
-const $route = useRoute()
 const gotoEdit = () => {
-  const currDomain = computed(function ():string {
-    // return document.domain
-    const query = $route.query.name
-    if (query) {
-      if (Array.isArray(query) && query[0]) {
-        return query[0].toString()
-      } else {
-        return query as string
-      }
-    }
-
-    return 'zoufangda01.dot'
-  })
-  window.open(`https://test.pns.link/details/${currDomain.value}`, '_blank')
+  const currDomain = account.currDomain
+  window.open(`https://test.pns.link/details/${currDomain}`, '_blank')
 }
 </script>
 
