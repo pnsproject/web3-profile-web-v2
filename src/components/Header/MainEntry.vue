@@ -99,7 +99,7 @@ const currDomain = computed(() => {
         font-size: 14px;
         color: #0F0E0E;
         align-items: center;
-        background: rgba(153, 153, 153, 0.2);
+        background: #f4f4f7;
         backdrop-filter: blur(10px);
         line-height: 37px;
         user-select: none;
@@ -115,7 +115,7 @@ const currDomain = computed(() => {
         }
 
         &:hover {
-          background: #fff;
+          background: #ececec;
           color: #0F0E0E;
 
           svg {

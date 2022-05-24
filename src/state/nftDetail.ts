@@ -3,7 +3,7 @@ import appConfig from '@/state/config'
 
 interface NftDetailDialog {
   show: boolean
-  assetsId: string | null
+  assetsId: number | null
 }
 
 export const nftDetailDialog: NftDetailDialog = reactive({
@@ -11,7 +11,7 @@ export const nftDetailDialog: NftDetailDialog = reactive({
   assetsId: null
 })
 
-export const showDialog = (assetsId: string) => {
+export const showDialog = (assetsId: number) => {
   nftDetailDialog.assetsId = assetsId
   const body: any = document.querySelector('body')
   body.style.height = '100vh'

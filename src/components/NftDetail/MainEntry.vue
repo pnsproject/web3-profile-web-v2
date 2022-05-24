@@ -11,7 +11,7 @@
       <div class="detail">
         <div class="des">
           <div class="tit">
-            {{ `${nft.contract.name} #${nft.token_id}`}}
+            {{ `${nft.contract.name} #${nft.token_id}` }}
             <img class="chain-icon" :src="chainIcons[nft.chain_id]" alt="">
           </div>
           <FlexibleText

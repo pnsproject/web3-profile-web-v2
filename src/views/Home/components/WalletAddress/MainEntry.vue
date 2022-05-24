@@ -46,9 +46,11 @@ const props = defineProps<{address: Global.Addr[]}>()
 const addressList = computed(() => {
   let res: Global.Addr[] = []
   if (props.address) {
-    res = props.address.filter(item => {
-      return !!item.value
-    })
+    res = props.address
+      .filter(item => {
+        return !!item.value && item.key !== 'KSM'
+      })
+      .reverse()
   }
 
   return res
@@ -148,6 +150,7 @@ const gotoEdit = () => {
     display: flex;
     flex-flow: row nowrap;
     margin-top: 16px;
+    width: 70px;
 
     .icon, .value {
       display: flex;
@@ -176,6 +179,7 @@ const gotoEdit = () => {
       color: #89899A;
       background: #FCFCFC;
       border-radius: 6px;
+      flex: 1;
 
       span {
         margin-right: 8px;

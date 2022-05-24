@@ -37,7 +37,7 @@ type SwiperSlotData = any
 
 const props = defineProps<{collectionsList: Global.CollectionsList}>()
 
-const showDetail = (assetsId: string) => showDialog(assetsId)
+const showDetail = (assetsId: number) => showDialog(assetsId)
 </script>
 
 <style lang="less" scoped>
@@ -83,8 +83,8 @@ const showDetail = (assetsId: string) => showDialog(assetsId)
   }
 
   .nft-item {
-    height: 90px;
-    width: 90px;
+    height: 130px;
+    width: 130px;
     background: #F9F9FC;
     border-radius: 4px;
     margin-top: 14px;
@@ -105,6 +105,11 @@ const showDetail = (assetsId: string) => showDialog(assetsId)
     width: 100vw;
     max-width: 388px;
     padding: 0 25px;
+
+    .nft-item {
+      width: 90px;
+      height: 90px;
+    }
   }
 }
 </style>

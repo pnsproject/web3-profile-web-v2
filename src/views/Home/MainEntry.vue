@@ -138,6 +138,7 @@ watch(currDomain, (val) => {
 <style lang="less" scoped>
   .main-contain {
     width: 100%;
+    padding-top: 10px;
 
     .contain-row {
       width: 954px;

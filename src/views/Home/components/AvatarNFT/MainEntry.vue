@@ -1,16 +1,16 @@
 <template>
   <div v-if="props.nftList.length" id="AvatarNFT" :class="{'mobile': isMobile}">
-    <div class="main">
+    <div class="main" @click="showDetail(props.nftList[mainIndex].id)">
       <Thumbnail
         :image="props.nftList[mainIndex].image_url"
         :error-text="true"
         title=""/>
     </div>
     <div class="sub">
-      <div class="sub-nft"
-           v-for="(item, index) in props.nftList"
-           :class="{active: index === mainIndex}"
-           :key="item.id">
+      <div v-for="(item, index) in props.nftList"
+           :key="item.id"
+           class="sub-nft"
+           :class="{active: index === mainIndex}">
         <Thumbnail
           :image="item.image_url"
           :error-text="false"
@@ -32,6 +32,7 @@
 import { drive } from '@/state/mobileCheck'
 import { computed, ref } from 'vue'
 import Thumbnail from '@/components/Thumbnail/MainEntry.vue'
+import { showDialog } from '@/state/nftDetail'
 import { showWindow } from '@/state/editWindows'
 import { account } from '@/state/account'
 
@@ -47,6 +48,10 @@ const switchMainNft = (index: number) => {
   mainIndex.value = index
   console.log(mainIndex.value)
 }
+
+const showDetail = (id: number) => {
+  showDialog(id)
+}
 </script>
 
 <style lang="less" scoped>
@@ -60,6 +65,7 @@ const switchMainNft = (index: number) => {
     overflow: hidden;
     border-radius: 10px;
     background: #f1f1f1;
+    cursor: pointer;
 
     img {
       min-height: 388px;

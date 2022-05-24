@@ -81,7 +81,9 @@ const gotoEdit = () => {
     font-size: 46px;
     line-height: 63px;
     color: #010008;
+    text-align: left;
     margin-bottom: 10px;
+    word-break: break-all;
   }
 
   .des {
@@ -141,7 +143,6 @@ const gotoEdit = () => {
     width: 100%;
     position: relative;
     flex-flow: row nowrap;
-    padding: 4px 0;
 
     .edit {
       position: absolute;
@@ -149,7 +150,7 @@ const gotoEdit = () => {
     }
 
     .media-item {
-      margin: 0 9px;
+     margin-right: 18px;
     }
   }
 }
@@ -166,6 +167,7 @@ const gotoEdit = () => {
     .domain {
       font-size: 24px;
       line-height: 27px;
+      text-align: center;
     }
     .des {
       width: 210px;
@@ -183,6 +185,10 @@ const gotoEdit = () => {
 
     .media-list {
       justify-content: center;
+
+      .media-item {
+        margin: 0 9px;
+      }
     }
   }
 }
