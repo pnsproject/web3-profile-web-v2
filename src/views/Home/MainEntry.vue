@@ -56,7 +56,7 @@ import ContentLoading from '@/components/PageLoadingV2/ContentLoading.vue'
 import UserDefaultAvatar from '@/components/UserDefaultAvatar/MainEntry.vue'
 import NftDetail from '@/components/NftDetail/MainEntry.vue'
 import axios from '@/plugins/axios'
-import { getDomainDetails, setup, getDomains } from 'pns-sdk'
+import { getDomainDetails, setup, getDomains, getOwner } from 'pns-sdk'
 import { useRoute, useRouter } from 'vue-router'
 import { switchChain, setOwner, account } from '@/state/account'
 import useMessage from '@/plugins/useMessage'
@@ -88,8 +88,8 @@ const homeData = ref<Global.HomeData>({
 })
 
 const getHomeData = async () => {
-  // const res = await axios.get(`/api/homes/all?eth_address=${account.domainOwner}`)
-  const res = await axios.get('/api/homes/all?eth_address=0x1C4E1D79049Dae82a901Ae501B0847d197395f47')
+  const res = await axios.get(`/api/homes/all?eth_address=${account.domainOwner}`)
+  // const res = await axios.get('/api/homes/all?eth_address=0x1C4E1D79049Dae82a901Ae501B0847d197395f47')
   if (res.data.message === 'account not exist') {
     $router.push('/notfound')
     throw new Error('account not found')
@@ -139,8 +139,10 @@ const getData = async () => {
     await getHomeData()
     await getPnsDomain()
     loading.value = false
-  } catch (e) {
-    useMessage('error', 'An error occurred, please try again later.')
+  } catch (e:any) {
+    if (e.message !== 'account not found') {
+      useMessage('error', 'An error occurred, please try again later.')
+    }
     console.log(e)
   }
 }
