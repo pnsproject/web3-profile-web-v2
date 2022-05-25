@@ -44,7 +44,7 @@ const goToDetail = (name: string) => {
 
 <style lang="less" scoped>
 #Domains {
-  margin-top: 30px;
+  margin-top: 20px;
   user-select: none;
   box-sizing: border-box;
 

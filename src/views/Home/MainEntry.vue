@@ -160,6 +160,7 @@ watch(currDomain, (val) => {
     }
 
     &.mobile {
+      padding-top: 0;
       .contain-row {
         width: 100%;
         max-width: 388px;

@@ -61,8 +61,9 @@ onMounted(() => {
       bottom: 0;
       padding-left: 4px;
       cursor: pointer;
+      line-height: 17px;
       span {
-        color: #F03E76
+        color: #F03E76;
       }
     }
 

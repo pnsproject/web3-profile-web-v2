@@ -1,5 +1,6 @@
 <template>
   <div class="nft-detail" v-if="show">
+    <div class="shell" @click="close"></div>
     <span class="close" @click="close">
       <svg t="1646385760653" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3153" width="10" height="10"><path d="M155.252 943.825c-19.213 0-38.429-7.332-53.089-21.988-29.317-29.321-29.317-76.855 0-106.175l713.494-713.494c29.317-29.321 76.853-29.321 106.175 0 29.317 29.317 29.317 76.855 0 106.175l-713.494 713.494c-14.66 14.66-33.874 21.988-53.089 21.988z" fill="#D2D2D2" p-id="3154"></path><path d="M868.749 943.824c-19.213 0-38.428-7.332-53.089-21.988l-713.494-713.493c-29.317-29.317-29.317-76.857 0-106.175 29.316-29.317 76.855-29.321 106.174 0l713.494 713.492c29.317 29.321 29.317 76.855 0 106.175-14.657 14.661-33.871 21.993-53.087 21.993z" fill="#D2D2D2" p-id="3155"></path></svg>
     </span>
@@ -11,7 +12,7 @@
       <div class="detail">
         <div class="des">
           <div class="tit">
-            {{ `${nft.contract.name} #${nft.token_id}` }}
+            {{ assetsName }}
             <img class="chain-icon" :src="chainIcons[nft.chain_id]" alt="">
           </div>
           <FlexibleText
@@ -43,6 +44,15 @@ const show = computed(() => {
 
 const assetsId = computed(() => {
   return nftDetailDialog.assetsId
+})
+
+const assetsName = computed(() => {
+  const rawName = `${nft.value.contract.name} #${nft.value.token_id}`
+  if (rawName.length > 25) {
+    return rawName.substr(0, 25) + '...' + rawName.substr(-4)
+  }
+
+  return rawName
 })
 
 const contentActive = ref(false)
@@ -98,6 +108,14 @@ watch(loading, (newVal) => {
     color:#fff
   }
 
+  .shell {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top:0
+  }
+
   .close {
     cursor: pointer;
     width: 36px;
@@ -116,11 +134,7 @@ watch(loading, (newVal) => {
     }
 
     &:hover {
-      background: #fff4f8;
-
-      svg  path {
-        fill: #F2739B
-      }
+      background: rgba(255,255,255,.2);
     }
 
     &:active {
@@ -161,8 +175,8 @@ watch(loading, (newVal) => {
       overflow: auto;
       margin-left: 30px;
 
-      &::-webkit-scrollbar {
-        width: 4px;
+      &::-webkit-scrollbar-thumb{
+        background-color: rgba(255,255,255,0.08);
       }
 
       .handle {
@@ -199,7 +213,7 @@ watch(loading, (newVal) => {
             height: 1px;
             width: 100%;
             display: block;
-            background: #EAEAEA;
+            background: #89899a;
             position: absolute;
             top: 0;
             left: 0;
@@ -209,7 +223,7 @@ watch(loading, (newVal) => {
         .des-text {
           font-size: 14px;
           line-height: 20px;
-          color: #fff;
+          color: #d6d6de;
           position: relative;
         }
       }

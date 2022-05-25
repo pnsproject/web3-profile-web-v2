@@ -35,7 +35,7 @@ const props = defineProps<{galaxyCredentialsList: Global.GalaxyCredentials[]}>()
 
 <style lang="less" scoped>
 #GalaxyCredentials {
-  margin-top: 30px;
+  margin-top: 20px;
   user-select: none;
   box-sizing: border-box;
 

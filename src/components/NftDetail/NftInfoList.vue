@@ -82,6 +82,7 @@ const transactionLink = computed(() => {
 .nft-info-list {
   display: flex;
   flex-flow: column;
+  color: #d6d6de;
 
   .info-item {
     display: flex;
@@ -106,6 +107,10 @@ const transactionLink = computed(() => {
 
       & > * {
         margin-left: 14px;
+      }
+
+      &::v-deep svg path {
+        fill: #5a596e;
       }
     }
   }

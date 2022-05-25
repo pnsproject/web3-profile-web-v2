@@ -6,6 +6,7 @@ export default {
   ipfsGateway: import.meta.env.VITE_IPFS_GATEWAY || '',
   pnsUrl: import.meta.env.VITE_PNS_URL || '',
   ensUrl: 'https://app.ens.domains',
+  mirrorBlogUrl: 'https://mirror.xyz',
   scrollBarWidth: 8,
   chains: {
     1284: {

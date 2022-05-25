@@ -120,7 +120,7 @@ const currDomain = computed(() => {
 
           svg {
             path {
-              fill: #0F0E0E
+              fill: #0F0E0E!important;
             }
           }
         }
@@ -129,7 +129,7 @@ const currDomain = computed(() => {
 
     &.mobile {
       .connect-wallet {
-        box-shadow: 0 3px 6px rgb(0 0 0 / 8%);
+        background: rgba(153, 153, 153, 0.2);
         span {
           display: none;
         }

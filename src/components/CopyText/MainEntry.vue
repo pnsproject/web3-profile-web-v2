@@ -10,6 +10,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import useMessage from '@/plugins/useMessage'
 
 const props = withDefaults(defineProps<{text: string, showText?: boolean }>(), { text: '', showText: true })
 
@@ -25,6 +26,7 @@ const copy = () => {
   oInput.style.display = 'none'
   document.querySelector('#oInput')?.remove()
   copied.value = true
+  useMessage('info', 'Coped!')
   setTimeout(() => {
     copied.value = false
   }, 2000)

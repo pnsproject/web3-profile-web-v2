@@ -54,7 +54,7 @@ const appThumbnail = computed(() => {
 
 <style lang="less" scoped>
 #Apps {
-  margin-top: 30px;
+  margin-top: 20px;
   user-select: none;
   box-sizing: border-box;
 

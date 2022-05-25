@@ -80,7 +80,7 @@ const gotoEdit = () => {
 
 <style lang="less" scoped>
 #WalletAddress {
-  margin-top: 30px;
+  margin-top: 20px;
   user-select: none;
   box-sizing: border-box;
 
@@ -150,7 +150,7 @@ const gotoEdit = () => {
     display: flex;
     flex-flow: row nowrap;
     margin-top: 16px;
-    width: 70px;
+    width: 100%;
 
     .icon, .value {
       display: flex;
