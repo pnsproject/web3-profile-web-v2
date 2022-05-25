@@ -36,7 +36,7 @@ declare namespace Global {
     apps: App[];
     avatars: NftThum[];
     collections: CollectionsList;
-    domains: NftThum[];
+    domains: DomainItem[];
     galaxy_credentials: GalaxyCredentials[];
     mirror_blogs: Blog[];
     poaps: Poap[];
@@ -81,5 +81,17 @@ declare namespace Global {
     id: number;
     image_url: string
     token_id:string
+  }
+
+  export interface PnsDomainItem {
+    id:string;
+    name: string;
+    owner: string;
+    parent: string;
+  }
+
+  export interface DomainItem {
+    id:number | string;
+    name: string;
   }
 }

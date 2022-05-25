@@ -56,7 +56,7 @@ import ContentLoading from '@/components/PageLoadingV2/ContentLoading.vue'
 import UserDefaultAvatar from '@/components/UserDefaultAvatar/MainEntry.vue'
 import NftDetail from '@/components/NftDetail/MainEntry.vue'
 import axios from '@/plugins/axios'
-import { getDomainDetails, setup } from 'pns-sdk'
+import { getDomainDetails, setup, getDomains } from 'pns-sdk'
 import { useRoute, useRouter } from 'vue-router'
 import { switchChain, setOwner, account } from '@/state/account'
 import useMessage from '@/plugins/useMessage'
@@ -119,10 +119,25 @@ const getDomainDetail = async () => {
   setOwner(res.owner)
 }
 
+const getPnsDomain = async () => {
+  await switchChain()
+  await setup()
+  const res: Global.PnsDomainItem[] = await getDomains(account.domainOwner)
+  const toDomain: Global.DomainItem[] = res.map((item) => {
+    return {
+      id: item.id,
+      name: item.name
+    }
+  })
+
+  homeData.value.domains = [...toDomain, ...homeData.value.domains]
+}
+
 const getData = async () => {
   try {
     await getDomainDetail()
     await getHomeData()
+    await getPnsDomain()
     loading.value = false
   } catch (e) {
     useMessage('error', 'An error occurred, please try again later.')

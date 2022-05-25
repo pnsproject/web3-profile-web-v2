@@ -31,7 +31,7 @@ import config from '@/state/config'
 
 type SwiperSlotData = any
 
-const props = defineProps<{domainsList: Global.NftThum[]}>()
+const props = defineProps<{domainsList: Global.DomainItem[]}>()
 
 const goToDetail = (name: string) => {
   if (name.endsWith('.dot')) {
