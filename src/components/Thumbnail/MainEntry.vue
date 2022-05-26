@@ -106,9 +106,8 @@ watch(props, () => {
 // 图片加载出错处理,尝试当作MP4加载
 const onerror = (e: any) => {
   thumbnail.value = ''
-  mp4Thumbnail.value = props.image
+  mp4Thumbnail.value = props.image || ''
   loading.value = true
-  // showError.value = true
 }
 
 // mp4加载出错处理

@@ -32,5 +32,15 @@ export default {
       blockExplorerUrls: ['https://cchain.explorer.avax-test.network']
     }
   },
-  pnsChainId: Number(import.meta.env.VITE_DEFAULT_CHAIN || 1284)
+  pnsChainId: Number(import.meta.env.VITE_DEFAULT_CHAIN || 1284),
+  editable: {
+    galaxCredentials: false,
+    domain: false,
+    collections: false,
+    mirrorBlog: false,
+    poap: false,
+    app: false,
+    avatar: false,
+    baseInfo: true
+  }
 }

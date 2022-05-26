@@ -12,7 +12,7 @@
                   fill="#010008" />
           </svg>
         </span>
-        <EditBtn v-if="account.editable" @click="showWindow('EditPOAP', {title:'My POAP', data: poapList})" class="edit" />
+        <EditBtn v-if="account.editable && config.editable.poap" @click="showWindow('EditPOAP', {title:'My POAP', data: poapList})" class="edit" />
       </div>
     </div>
     <div class="content" :class="{ active }">
@@ -53,6 +53,7 @@ import Thumbnail from '@/components/Thumbnail/MainEntry.vue'
 import { computed, ref } from 'vue'
 import { account } from '@/state/account'
 import { showWindow } from '@/state/editWindows'
+import config from '@/state/config'
 
 const props = defineProps<{poapList: Global.Poap[]}>()
 

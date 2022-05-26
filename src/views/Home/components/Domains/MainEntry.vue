@@ -6,7 +6,7 @@
         <span class="count"> {{ props.domainsList.length }}</span>
       </div>
       <div class="right">
-        <EditBtn v-if="account.editable" @click="showWindow('EditGalaxCredentials', {title:'My Domain', data: domainsList})" class="edit" />
+        <EditBtn v-if="account.editable && config.editable.domain" @click="showWindow('EditGalaxCredentials', {title:'My Domain', data: domainsList})" class="edit" />
       </div>
     </div>
     <div class="content">
@@ -22,10 +22,8 @@
 <script lang="ts" setup>
 import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import Swiper from '@/components/Swiper/MainEntry.vue'
-import SwiperSmall from '@/components/SwiperSmall/MainEntry.vue'
 import { account } from '@/state/account'
 import { showWindow } from '@/state/editWindows'
-import { drive } from '@/state/mobileCheck'
 import config from '@/state/config'
 
 type SwiperSlotData = any

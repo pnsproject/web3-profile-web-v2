@@ -15,7 +15,7 @@
                   fill="#010008" />
           </svg>
         </span>
-        <EditBtn v-if="account.editable" @click="showWindow('EditApp', {title:'My App', data: appList})" class="edit" />
+        <EditBtn v-if="account.editable && config.editable.app" @click="showWindow('EditApp', {title:'My App', data: appList})" class="edit" />
       </div>
     </div>
     <div class="content" :class="{ active }">
@@ -36,6 +36,7 @@ import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import { computed, ref } from 'vue'
 import { account } from '@/state/account'
 import { showWindow } from '@/state/editWindows'
+import config from '@/state/config'
 
 const props = defineProps<{appList: Global.App[]}>()
 

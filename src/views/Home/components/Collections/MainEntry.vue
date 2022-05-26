@@ -9,7 +9,7 @@
           <span class="count"> {{ collect.nft_assets.length }}</span>
         </div>
         <div class="right">
-          <EditBtn v-if="account.editable" class="edit" />
+          <EditBtn v-if="account.editable && config.editable.collections" class="edit" />
         </div>
       </div>
       <div class="content">
@@ -29,6 +29,7 @@ import Swiper from '@/components/SwiperSmall/MainEntry.vue'
 import Thumbnail from '@/components/Thumbnail/MainEntry.vue'
 import { showDialog } from '@/state/nftDetail'
 import { account } from '@/state/account'
+import config from '@/state/config'
 
 type SwiperSlotData = any
 

@@ -15,7 +15,7 @@
                   fill="#010008" />
           </svg>
         </span>
-        <EditBtn v-if="account.editable" class="edit" @click="gotoEdit"/>
+        <EditBtn v-if="account.editable && config.editable.baseInfo" class="edit" @click="gotoEdit"/>
       </div>
     </div>
     <div class="content" :class="{ active }">
@@ -36,10 +36,11 @@
 <script lang="ts" setup>
 import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import CopyText from '@/components/CopyText/MainEntry.vue'
-import icons, { IconType } from './icons'
+import icons from './icons'
 import { computed, ref } from 'vue'
 import { account } from '@/state/account'
 import { drive } from '@/state/mobileCheck'
+import config from '@/state/config'
 
 const props = defineProps<{address: Global.Addr[]}>()
 
@@ -74,7 +75,7 @@ const contentHeight = computed(() => {
 
 const gotoEdit = () => {
   const currDomain = account.currDomain
-  window.open(`https://test.pns.link/details/${currDomain}`, '_blank')
+  window.open(`${config.pnsUrl}/details/${currDomain}`, '_blank')
 }
 </script>
 

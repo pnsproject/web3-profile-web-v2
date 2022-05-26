@@ -6,7 +6,7 @@
         <span class="count"> {{ props.galaxyCredentialsList.length }}</span>
       </div>
       <div class="right">
-        <EditBtn v-if="account.editable" @click="showWindow('EditGalaxyCredentials', {title:'My App', data: galaxyCredentialsList})" class="edit" />
+        <EditBtn v-if="account.editable && config.editable.galaxCredentials" @click="showWindow('EditGalaxyCredentials', {title:'My App', data: galaxyCredentialsList})" class="edit" />
       </div>
     </div>
     <div class="content">
@@ -25,6 +25,7 @@ import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import Swiper from '@/components/Swiper/MainEntry.vue'
 import { account } from '@/state/account'
 import { showWindow } from '@/state/editWindows'
+import config from '@/state/config'
 
 type SwiperSlotData = any
 

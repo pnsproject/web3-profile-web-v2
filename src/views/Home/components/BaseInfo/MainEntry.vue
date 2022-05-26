@@ -22,7 +22,7 @@
         :type="item.key"
         :url="item.value" />
       <SocialMedia @click.prevent="showShare=true" type="Share" url="#" class="media-item" />
-      <EditBtn v-if="account.editable" class="edit" @click="gotoEdit"></EditBtn>
+      <EditBtn v-if="account.editable && config.editable.baseInfo" class="edit" @click="gotoEdit"></EditBtn>
     </div>
   </div>
   <SharePage v-model:show="showShare" />
@@ -35,6 +35,7 @@ import SocialMedia from './components/SocialMedia.vue'
 import SharePage from './components/SharePage.vue'
 import { computed, ref } from 'vue'
 import { account } from '@/state/account'
+import config from '@/state/config'
 
 const props = defineProps<{detail: Global.DomainDetail}>()
 
@@ -64,7 +65,7 @@ const twitter = computed(() => {
 })
 
 const gotoEdit = () => {
-  window.open(`https://test.pns.link/details/${props.detail.name}`, '_blank')
+  window.open(`${config.pnsUrl}/details/${props.detail.name}`, '_blank')
 }
 
 </script>

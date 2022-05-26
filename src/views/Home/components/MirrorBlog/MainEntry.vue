@@ -11,7 +11,7 @@
                   fill="#010008" />
           </svg>
         </span>
-        <EditBtn v-if="account.editable" class="edit" />
+        <EditBtn v-if="account.editable && config.editable.mirrorBlog" class="edit" />
       </div>
     </div>
     <div class="content" :class="{ active }">
