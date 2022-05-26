@@ -2,7 +2,7 @@
   <div class="nft-thumbnail" :style="{width: '100%', height: '100%'}" ref="box">
     <img :src="appLoading" alt="loading" v-if="loading " class="loading">
 
-    <img v-if="noImage" :src="appLoading"  :alt="props.title" class="default">
+    <img v-if="showDefault" :src="defaultPic" :alt="props.title" class="default">
 
     <video v-show="mp4Thumbnail && !showError"
            ref="videoItem"
@@ -33,12 +33,13 @@
 
 <script lang="ts" setup>
 import appLoading from '@/assets/logo_loading.svg'
+import defaultPic from './assets/nft_default.png'
 import Error from './Error.vue'
 import { ref, watch } from 'vue'
 import appConfig from '../../state/config'
 
 const props = defineProps<{
-  image: string
+  image: string | null
   title: string
   errorText: boolean
 }>()
@@ -47,7 +48,7 @@ const loading = ref(true)
 
 const showError = ref(false)
 
-const noImage = ref(false)
+const showDefault = ref(false)
 
 // svg预览
 const svgThumbnail = ref('')
@@ -61,8 +62,8 @@ const thumbnail = ref('')
 // 处理预览图
 const processThumbnail = () => {
   if (!props.image) {
-    noImage.value = true
     loading.value = false
+    showDefault.value = true
     return
   }
   // svg
