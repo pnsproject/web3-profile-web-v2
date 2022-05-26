@@ -13,10 +13,7 @@
         </div>
       </div>
       <div class="content">
-        <Swiper v-slot="item:SwiperSlotData"
-                :item-space="10"
-                :datalist="collect.nft_assets"
-                :page-size="100">
+        <Swiper v-slot="item:SwiperSlotData" :datalist="collect.nft_assets" >
           <div class="nft-item" @click="showDetail(item.data.id)">
             <Thumbnail :image="item.data.image" :error-text="false" :title="item.data.name" />
           </div>

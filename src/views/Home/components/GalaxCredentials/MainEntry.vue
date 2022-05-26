@@ -10,10 +10,8 @@
       </div>
     </div>
     <div class="content">
-      <Swiper :item-space="10"
-              v-slot="item:SwiperSlotData"
-              :datalist="props.galaxyCredentialsList"
-              :page-size="100">
+      <Swiper v-slot="item:SwiperSlotData"
+              :datalist="props.galaxyCredentialsList">
         <div class="nft-item">
           {{ item.data.name }}
         </div>
@@ -24,7 +22,7 @@
 
 <script lang="ts" setup>
 import EditBtn from '@/components/EditBtn/MainEntry.vue'
-import Swiper from '@/components/SwiperSmall/MainEntry.vue'
+import Swiper from '@/components/Swiper/MainEntry.vue'
 import { account } from '@/state/account'
 import { showWindow } from '@/state/editWindows'
 
@@ -44,6 +42,7 @@ const props = defineProps<{galaxyCredentialsList: Global.GalaxyCredentials[]}>()
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 14px;
 
     .left, .right{
       display: flex;
@@ -83,11 +82,9 @@ const props = defineProps<{galaxyCredentialsList: Global.GalaxyCredentials[]}>()
     color: #89899A;
     padding: 0 10px;
     border-radius: 4px;
-    margin-top: 14px;
   }
 
   .content {
-    overflow: hidden;
     transition: height 0.3s;
     display: flex;
     flex-flow: row nowrap;

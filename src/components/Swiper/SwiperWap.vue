@@ -14,7 +14,7 @@
 <script lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { FreeMode } from 'swiper'
-import '../Swiper/style.css'
+import './style.css'
 
 export default {
   components: {

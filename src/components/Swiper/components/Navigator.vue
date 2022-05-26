@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<{position: string}>(), { position: 'left'
     position: absolute;
     width: 40px;
     height: 40px;
+    box-sizing: border-box;
     right: 0;
     margin-right: -16px;
     top: 50%;

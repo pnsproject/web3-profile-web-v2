@@ -10,10 +10,7 @@
       </div>
     </div>
     <div class="content">
-      <Swiper :item-space="10"
-              v-slot="item:SwiperSlotData"
-              :datalist="props.domainsList"
-              :page-size="100">
+      <Swiper v-slot="item:SwiperSlotData" :datalist="props.domainsList">
         <div class="nft-item" @click="goToDetail(item.data.name)">
           {{ item.data.name }}
         </div>
@@ -24,9 +21,11 @@
 
 <script lang="ts" setup>
 import EditBtn from '@/components/EditBtn/MainEntry.vue'
-import Swiper from '@/components/SwiperSmall/MainEntry.vue'
+import Swiper from '@/components/Swiper/MainEntry.vue'
+import SwiperSmall from '@/components/SwiperSmall/MainEntry.vue'
 import { account } from '@/state/account'
 import { showWindow } from '@/state/editWindows'
+import { drive } from '@/state/mobileCheck'
 import config from '@/state/config'
 
 type SwiperSlotData = any
@@ -53,6 +52,7 @@ const goToDetail = (name: string) => {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 14px;
 
     .left, .right{
       display: flex;
@@ -92,12 +92,10 @@ const goToDetail = (name: string) => {
     color: #89899A;
     padding: 0 10px;
     border-radius: 4px;
-    margin-top: 14px;
     cursor: pointer;
   }
 
   .content {
-    overflow: hidden;
     transition: height 0.3s;
     display: flex;
     flex-flow: row nowrap;
