@@ -1,6 +1,6 @@
 export type MsgType = 'info' | 'success' | 'warn' | 'error'
 
-const useMessage = function (type: MsgType = 'info', msg: string) {
+const useMessage = function (type: MsgType = 'info', msg: string, emoji?: string) {
   let messageList = document.getElementById('MessageList')
   if (!messageList) {
     messageList = document.createElement('div')
@@ -10,6 +10,19 @@ const useMessage = function (type: MsgType = 'info', msg: string) {
 
   const messageItem = document.createElement('div')
   messageItem.setAttribute('class', `app-message ${type}`)
+
+  if (emoji) {
+    const icon = document.createElement('span')
+    icon.setAttribute('class', 'icon')
+    icon.innerText = emoji
+    messageItem.append(icon)
+  } else {
+    const icon = document.createElement('img')
+    icon.setAttribute('src', `/message/${type}.svg`)
+    icon.setAttribute('class', 'icon')
+    messageItem.append(icon)
+  }
+
   const textItem = document.createElement('div')
   textItem.setAttribute('class', 'text')
   textItem.innerText = msg

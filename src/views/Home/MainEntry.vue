@@ -141,7 +141,7 @@ const getData = async () => {
     loading.value = false
   } catch (e:any) {
     if (e.message !== 'account not found') {
-      useMessage('error', 'An error occurred, please try again later.')
+      useMessage('error', 'An error occurred, please try again later.', '🤕')
     }
     console.log(e)
   }

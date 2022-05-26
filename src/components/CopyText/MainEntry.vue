@@ -26,7 +26,7 @@ const copy = () => {
   oInput.style.display = 'none'
   document.querySelector('#oInput')?.remove()
   copied.value = true
-  useMessage('info', 'Coped!')
+  useMessage('info', 'Coped!', '📋')
   setTimeout(() => {
     copied.value = false
   }, 2000)
