@@ -39,8 +39,12 @@ const showDetail = (assetsId: number) => showDialog(assetsId)
 </script>
 
 <style lang="less" scoped>
+#Collections {
+  margin-bottom: 30px;
+}
+
 .nft-assets {
-  margin-top: 20px;
+
   user-select: none;
   box-sizing: border-box;
   cursor: pointer;

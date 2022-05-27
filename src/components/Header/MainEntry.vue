@@ -1,7 +1,7 @@
 <template>
   <header class="page-header-a" :class="{mobile: isMobile}">
     <div class="page-with">
-      <a href="/" class="logo">
+      <a :href="appConfig.pnsUrl" class="logo">
         <img :src="Logo" class="logo-wap" alt="pns web3 profile">
         <img :src="Logo2" class="logo-web" alt="pns web3 profile">
       </a>
@@ -48,6 +48,7 @@ const currDomain = computed(() => {
     top:0;
     position: fixed;
     z-index: 999;
+    background:rgba(255,255,255,0.98);
 
     .page-with {
       display: flex;
@@ -142,6 +143,9 @@ const currDomain = computed(() => {
 
   @media only screen and (max-width: 954px) {
     .page-header-a {
+      background: none;
+      position: absolute;
+
       .logo {
         .logo-wap {
           display: block;

@@ -66,7 +66,7 @@ const contentHeight = computed(() => {
 
 <style lang="less" scoped>
 #POAP {
-  margin-top: 20px;
+  margin-bottom: 30px;
   user-select: none;
   box-sizing: border-box;
 
@@ -126,8 +126,10 @@ const contentHeight = computed(() => {
     margin-right: 13px;
 
     .img {
-      height: 57px;
-      width: 57px;
+      height: 56px;
+      width: 56px;
+      border: 1px solid #f9f9fc;
+      background: #fff;
     }
   }
 
@@ -144,7 +146,7 @@ const contentHeight = computed(() => {
   }
 
   .content2 {
-    background: #F9F9FC;
+    background: #FCFCFC;
     border-radius: 4px;
     box-sizing: border-box;
     padding: 0 20px 20px 20px;
@@ -170,15 +172,17 @@ const contentHeight = computed(() => {
         color: #010008;
 
         .img {
-          min-height: 57px;
-          min-width: 57px;
-          max-width: 57px;
-          max-height: 57px;
-          height: 57px;
-          width: 57px;
+          min-height: 56px;
+          min-width: 56px;
+          max-width: 56px;
+          max-height: 56px;
+          height: 56px;
+          width: 56px;
           margin-right: 10px;
           border-radius: 50%;
           overflow: hidden;
+          border: 1px solid #EFEFF3;
+          background: #fff;
         }
         .tit {
           flex: 1;
@@ -191,6 +195,21 @@ const contentHeight = computed(() => {
         line-height: 19px;
         color: #89899A;
         margin: 6px 0;
+        padding-left: 8px;
+        position: relative;
+
+        &:before {
+          content: '';
+          height: 2px;
+          width: 2px;
+          background: #89899A;
+          border-radius: 50%;
+          display: block;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 2px;
+        }
       }
 
       .text {

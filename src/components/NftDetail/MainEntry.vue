@@ -18,7 +18,7 @@
           <FlexibleText
             class="des-text"
             height="60"
-            :text="nft.contract.description">
+            :text="desHtml" :is-html="true">
           </FlexibleText>
           <NftInfoList v-if="nft.token_id" :nft="nft" class="list"></NftInfoList>
         </div>
@@ -44,6 +44,22 @@ const show = computed(() => {
 
 const assetsId = computed(() => {
   return nftDetailDialog.assetsId
+})
+
+const desHtml = computed(() => {
+  if (!nft.value.contract.description) {
+    return ''
+  }
+
+  const arr = nft.value.contract.description.match(/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-.,@?^=%&:/~+#]*[\w\-@?^=%&/~+#])?/gi);
+  let desTextCopy = nft.value.contract.description + ''
+  if (arr.length) {
+    arr.forEach((text: string) => {
+      desTextCopy = desTextCopy.replace(text, `<a href="${text}" target="_blank">${text}</a>`)
+    })
+  }
+
+  return desTextCopy
 })
 
 const assetsName = computed(() => {
@@ -200,8 +216,8 @@ watch(loading, (newVal) => {
           word-break: break-all;
 
           .chain-icon {
-            width: 24px;
-            height: 24px;
+            width: 32px;
+            height: 32px;
             position: relative;
             transform: translateY(1px);
           }
@@ -219,6 +235,7 @@ watch(loading, (newVal) => {
             position: absolute;
             top: 0;
             left: 0;
+            transform: scaleY(0.5);
           }
         }
 
@@ -242,6 +259,16 @@ watch(loading, (newVal) => {
       .detail {
         height: calc(100vh - 435px);
         margin: 0;
+
+        .des{
+          .tit {
+            font-size: 28px;
+            .chain-icon {
+              width: 24px;
+              height: 24px;
+            }
+          }
+        }
       }
 
       .close {

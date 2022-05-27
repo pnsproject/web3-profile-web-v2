@@ -76,6 +76,7 @@ const gotoEdit = () => {
   flex-flow: column nowrap;
   text-align: center;
   align-items: flex-start;
+  margin-bottom: 30px;
 
   .domain {
     font-weight: 600;

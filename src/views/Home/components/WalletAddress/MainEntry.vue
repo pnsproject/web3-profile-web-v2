@@ -81,7 +81,7 @@ const gotoEdit = () => {
 
 <style lang="less" scoped>
 #WalletAddress {
-  margin-top: 20px;
+  margin-bottom: 20px;
   user-select: none;
   box-sizing: border-box;
 
@@ -166,6 +166,8 @@ const gotoEdit = () => {
       border-radius: 6px;
       font-weight: 600;
       font-size: 14px;
+      width: 70px;
+      box-sizing: border-box;
 
       img {
         margin-right: 6px;

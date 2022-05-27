@@ -1,5 +1,5 @@
 <template>
-  <div class="swiper-frame">
+  <div class="swiper-frame swiper-wap">
     <Swiper
       slidesPerView="auto"
       :slides-per-group-auto="true"

@@ -1,6 +1,7 @@
 <template>
   <div class="flex-text" :class='{active: active}' :style="{maxHeight: props.height + 'px'}">
-    <span class="content" ref="content">{{ props. text }}</span>
+    <span v-if="isHtml" class="content" ref="content"  v-html="props.text"></span>
+    <span v-else class="content" ref="content">{{ props.text }}</span>
     <div class="trigger-active" v-show="!active && !lackOfText">... <span @click="trigger">Read more</span></div>
     <div class="trigger-inactive" v-show="active"><span @click="trigger">Show less</span></div>
   </div>
@@ -9,7 +10,7 @@
 <script lang="ts" setup>
 import { onMounted, ref, watch } from 'vue'
 
-const props = withDefaults(defineProps<{text: string, height: string | number}>(), { text: '', height: 100 })
+const props = withDefaults(defineProps<{text: string, height: string | number, isHtml?: boolean}>(), { text: '', height: 100 })
 
 const active = ref(false)
 
@@ -48,6 +49,12 @@ onMounted(() => {
     width: 100%;
     overflow: hidden;
     position: relative;
+
+    .content {
+      &::v-deep a{
+        color: #89899a;
+      }
+    }
 
     &.active {
       height: auto!important;

@@ -56,7 +56,6 @@ const goToMirrorBlog = () => {
 
 <style lang="less" scoped>
 #MirrorBlog {
-  margin-top: 30px;
   user-select: none;
   box-sizing: border-box;
 

@@ -9,7 +9,7 @@
       <div class="tit">Contract Address</div>
       <div class="val">
         <span>{{ address }}</span>
-        <CopyText :show-text="false" :text="props.nft.contract"></CopyText>
+        <CopyText :show-text="false" :text="props.nft.contract.address"></CopyText>
         <Linker :to="addressLink"></Linker>
       </div>
     </div>

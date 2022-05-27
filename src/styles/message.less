@@ -9,7 +9,7 @@
 
   .app-message {
     position: absolute;
-    width: 360px;
+    max-width: 360px;
     background-color: #fff;
     transition: all 0.3s;
     display: flex;
@@ -20,6 +20,8 @@
     align-items: center;
     margin-top: 8px;
     top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     box-sizing: border-box;
 
     .text {

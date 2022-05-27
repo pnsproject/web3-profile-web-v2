@@ -3,6 +3,10 @@
     height: 100%;
 }
 
+.swiper-wap .swiper {
+    overflow: visible!important;
+}
+
 .swiper-slide {
     font-size: 18px;
     display: inline-flex;
