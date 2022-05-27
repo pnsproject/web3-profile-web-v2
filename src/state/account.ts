@@ -72,6 +72,8 @@ export const connect = async () => {
 }
 
 export const switchChain = async () => {
+  if (!window.ethereum) return
+
   const params = appConfig.chains[appConfig.pnsChainId as PnsChainId]
   const res = await window.ethereum
     .request({
