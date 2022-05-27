@@ -1,7 +1,7 @@
 <template>
   <header class="page-header-a" :class="{mobile: isMobile}">
     <div class="page-with">
-      <a :href="appConfig.pnsUrl" class="logo">
+      <a :href="pnsUrl" class="logo">
         <img :src="Logo" class="logo-wap" alt="pns web3 profile">
         <img :src="Logo2" class="logo-web" alt="pns web3 profile">
       </a>
@@ -27,16 +27,16 @@ import { drive } from '@/state/mobileCheck'
 import { account, connect } from '@/state/account'
 import Identicoin from './Identicoin.vue'
 
-const pnsUrl = computed(() => {
-  return appConfig.pnsUrl
-})
-
 const isMobile = computed(() => {
   return drive.isMobile
 })
 
 const currDomain = computed(() => {
   return account.currDomain
+})
+
+const pnsUrl = computed(() => {
+  return appConfig.pnsUrl.toString() || '/'
 })
 </script>
 
