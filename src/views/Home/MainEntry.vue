@@ -116,6 +116,11 @@ const getDomainDetail = async () => {
   const res: any = await getDomainDetails(currDomain.value)
   domainDetail.value = res
   console.log('domainDetail', res)
+  if (res.owner === '0x0000000000000000000000000000000000000000') {
+    $router.push('/notfound')
+    throw new Error('account not found')
+  }
+
   setOwner(res.owner)
 }
 
