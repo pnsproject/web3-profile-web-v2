@@ -89,7 +89,6 @@ const homeData = ref<Global.HomeData>({
 
 const getHomeData = async () => {
   const res = await axios.get(`/api/homes/all?eth_address=${account.domainOwner}`)
-  // const res = await axios.get('/api/homes/all?eth_address=0x1C4E1D79049Dae82a901Ae501B0847d197395f47')
   if (res.data.message === 'account not exist') {
     $router.push('/notfound')
     throw new Error('account not found')
