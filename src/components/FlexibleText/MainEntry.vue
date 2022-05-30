@@ -52,7 +52,20 @@ onMounted(() => {
 
     .content {
       &::v-deep a{
-        color: #89899a;
+        color: #007AFF;
+        position: relative;
+
+        &:after {
+          content: '';
+          display: block;
+          width: 100%;
+          height: 1px;
+          transform: scaleY(0.5);
+          background: #007AFF;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
       }
     }
 

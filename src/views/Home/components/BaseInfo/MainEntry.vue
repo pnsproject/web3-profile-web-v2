@@ -1,7 +1,7 @@
 <template>
   <div id="BaseInfo">
     <div class="domain">{{ props.detail.name }}</div>
-    <div class="des" v-if="notice">{{ notice.value }}</div>
+    <div class="des" v-if="notice" v-html="notice.value"></div>
     <div class="domain-owner">
       <a v-if="twitter" class="twitter" :href="twitter.value" target="_blank">
         <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,6 +13,9 @@
         <span>{{ shotWallet }}</span>
         <CopyText :text="props.detail.owner" :show-text="false" />
       </div>
+      <div class="share-btn" v-if="socialList.length === 0" @click="showShare=true">
+        <img :src="shareIcon" alt="">
+      </div>
     </div>
     <div v-if="props.detail.textRecords" class="media-list">
       <SocialMedia
@@ -21,7 +24,9 @@
         class="media-item"
         :type="item.key"
         :url="item.value" />
-      <SocialMedia @click.prevent="showShare=true" type="Share" url="#" class="media-item" />
+      <SocialMedia
+        v-if="socialList.length"
+        @click.prevent="showShare=true" type="Share" url="#" class="media-item" />
       <EditBtn v-if="account.editable && config.editable.baseInfo" class="edit" @click="gotoEdit"></EditBtn>
     </div>
   </div>
@@ -36,6 +41,7 @@ import SharePage from './components/SharePage.vue'
 import { computed, ref } from 'vue'
 import { account } from '@/state/account'
 import config from '@/state/config'
+import shareIcon from './components/assets/icons_a/Share-2.svg'
 
 const props = defineProps<{detail: Global.DomainDetail}>()
 
@@ -53,9 +59,24 @@ const socialList = computed(() => {
 })
 
 const notice = computed(() => {
-  return props.detail.textRecords.find(item => {
+  const notice = props.detail.textRecords.find(item => {
     return item.key === 'notice' && item.value
   })
+
+  if (notice) {
+    const arr = notice.value.match(/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-.,@?^=%&:/~+#]*[\w\-@?^=%&/~+#])?/gi)
+    console.log(arr)
+    let desTextCopy = notice.value + ''
+    if (arr && arr.length) {
+      arr.forEach((text: string) => {
+        desTextCopy = desTextCopy.replace(text, `<a href="${text}" target="_blank">${text}</a>`)
+      })
+    }
+    notice.value = desTextCopy
+    return notice
+  }
+
+  return null
 })
 
 const twitter = computed(() => {
@@ -94,6 +115,23 @@ const gotoEdit = () => {
     line-height: 21px;
     color: #010008;
     margin-bottom: 20px;
+
+    &::v-deep a {
+      color: #007AFF;
+      position: relative;
+
+      &:after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 1px;
+        transform: scaleY(0.5);
+        background: #007AFF;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
   }
 
   .domain-owner {
@@ -137,6 +175,15 @@ const gotoEdit = () => {
       span {
         margin-right: 8px;
       }
+    }
+
+    .share-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      margin-left: 10px;
     }
   }
 
