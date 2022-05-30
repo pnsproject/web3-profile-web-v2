@@ -29,9 +29,8 @@ export const getQueryString = function (name: string) {
 const initCurrDomain = function () {
   const domain = document.domain
 
-  if (domain === 'localhost' || domain.includes('vercel')) {
-    const queryDomain = getQueryString('domain')
-    account.currDomain = queryDomain || 'zoufangda01.dot'
+  if (getQueryString('domain')) {
+    account.currDomain = getQueryString('domain') || ''
     return
   }
 
