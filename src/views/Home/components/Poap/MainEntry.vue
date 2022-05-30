@@ -124,11 +124,12 @@ const contentHeight = computed(() => {
     overflow: hidden;
     border-radius: 50%;
     margin-right: 13px;
+    border: 1px solid #EFEFF3;
+    box-sizing: border-box;
 
     .img {
-      height: 56px;
-      width: 56px;
-      border: 1px solid #f9f9fc;
+      height: 55px;
+      width: 55px;
       background: #fff;
     }
   }

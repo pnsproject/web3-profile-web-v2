@@ -1,6 +1,6 @@
 export type MsgType = 'info' | 'success' | 'warn' | 'error'
 
-const useMessage = function (type: MsgType = 'info', msg: string, emoji?: string) {
+const useMessage = function (type: MsgType = 'info', msg: string, emoji?: string, dark?:boolean) {
   let messageList = document.getElementById('MessageList')
   if (!messageList) {
     messageList = document.createElement('div')
@@ -8,8 +8,11 @@ const useMessage = function (type: MsgType = 'info', msg: string, emoji?: string
     document.body.append(messageList)
   }
 
+  messageList.setAttribute('class', dark ? 'dark' : '')
+
   const messageItem = document.createElement('div')
-  messageItem.setAttribute('class', `app-message ${type}`)
+  const className = `app-message ${type}`
+  messageItem.setAttribute('class', className)
 
   if (emoji) {
     const icon = document.createElement('span')
@@ -27,6 +30,10 @@ const useMessage = function (type: MsgType = 'info', msg: string, emoji?: string
   textItem.setAttribute('class', 'text')
   textItem.innerText = msg
 
+  if (Math.min(screen.width, window.innerWidth) <= 750) {
+    messageItem.style.maxWidth = '260px'
+  }
+
   const messageItemList = messageList.querySelectorAll('.app-message')
   messageItem.appendChild(textItem)
   messageList.append(messageItem)
@@ -42,7 +49,7 @@ const useMessage = function (type: MsgType = 'info', msg: string, emoji?: string
       setTimeout(() => {
         messageItem.remove()
       }, 500)
-    }, 5000)
+    }, 3000)
   }, 100)
 }
 

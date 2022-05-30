@@ -26,7 +26,7 @@
 
     .text {
       font-size: 16px;
-      white-space: nowrap;
+      width: max-content;
     }
 
     .icon {
@@ -68,6 +68,17 @@
 
     &.active {
       top: 30%
+    }
+  }
+
+  &.dark {
+    .app-message {
+      background-color: #3B3A3A!important;
+      border: 1px solid #515050;
+
+      .text {
+        color: #F9F9FC!important;
+      }
     }
   }
 }

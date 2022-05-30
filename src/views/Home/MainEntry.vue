@@ -19,7 +19,7 @@
       <div class="contain-row">
         <div class="avatar">
           <AvatarNft v-if="homeData.avatars.length" :nft-list="homeData.avatars" ></AvatarNft>
-          <UserDefaultAvatar v-else :domain="'zoufangda.dot'"></UserDefaultAvatar>
+          <UserDefaultAvatar v-else :domain="currDomain"></UserDefaultAvatar>
         </div>
         <div class="contains">
           <BaseInfo :detail="domainDetail" />
@@ -166,7 +166,7 @@ watch(currDomain, (val) => {
       display: flex;
       flex-flow: row nowrap;
       margin: 0 auto;
-      justify-content: right;
+      justify-content: flex-end;
     }
 
     .avatar {
