@@ -11,6 +11,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import useMessage from '@/plugins/useMessage'
+import { nftDetailDialog } from '@/state/nftDetail'
 
 const props = withDefaults(defineProps<{text: string, showText?: boolean }>(), { text: '', showText: true })
 
@@ -26,7 +27,7 @@ const copy = () => {
   oInput.style.display = 'none'
   document.querySelector('#oInput')?.remove()
   copied.value = true
-  useMessage('info', 'Coped!', '📋')
+  useMessage('info', 'Coped!', '📋', nftDetailDialog.show)
   setTimeout(() => {
     copied.value = false
   }, 2000)

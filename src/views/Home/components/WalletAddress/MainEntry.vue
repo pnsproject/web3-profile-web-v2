@@ -81,7 +81,7 @@ const gotoEdit = () => {
 
 <style lang="less" scoped>
 #WalletAddress {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   user-select: none;
   box-sizing: border-box;
 

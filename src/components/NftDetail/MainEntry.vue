@@ -37,21 +37,31 @@ import NftInfoList from './NftInfoList.vue'
 import PageLoading from '@/components/PageLoading/MainEntry.vue'
 import { nftDetailDialog, closeDialog } from '@/state/nftDetail'
 import chainIcons from './chianIncons'
+import useMessage from '@/plugins/useMessage'
 
+/**
+ * 窗口开关状态
+ */
 const show = computed(() => {
   return nftDetailDialog.show
 })
 
+/**
+ * 当前展示的nft数据库ID
+ */
 const assetsId = computed(() => {
   return nftDetailDialog.assetsId
 })
 
+/**
+ * 处理nft描述中的链接
+ */
 const desHtml = computed(() => {
   if (!nft.value.contract.description) {
     return ''
   }
 
-  const arr = nft.value.contract.description.match(/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-.,@?^=%&:/~+#]*[\w\-@?^=%&/~+#])?/gi);
+  const arr = nft.value.contract.description.match(/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-.,@?^=%&:/~+#]*[\w\-@?^=%&/~+#])?/gi)
   let desTextCopy = nft.value.contract.description + ''
   if (arr.length) {
     arr.forEach((text: string) => {
@@ -62,6 +72,9 @@ const desHtml = computed(() => {
   return desTextCopy
 })
 
+/**
+ * 处理nft名称防止过长
+ */
 const assetsName = computed(() => {
   const rawName = `${nft.value.contract.name} #${nft.value.token_id}`
   if (rawName.length > 25) {
@@ -71,10 +84,19 @@ const assetsName = computed(() => {
   return rawName
 })
 
+/**
+ * 过渡样式
+ */
 const contentActive = ref(false)
 
+/**
+ * 加载状态
+ */
 const loading = ref(true)
 
+/**
+ * NFT详情数据
+ */
 const nft = ref<Global.NftItem>({
   chain_id: 0,
   contract: {},
@@ -84,6 +106,9 @@ const nft = ref<Global.NftItem>({
   token_id: ''
 })
 
+/**
+ * 不同设备样式控制
+ */
 const isMobile = computed(() => {
   return drive.isMobile
 })
@@ -95,10 +120,17 @@ const close = () => {
 watch(assetsId, async (newVal) => {
   if (!newVal) return
   loading.value = true
-  const res = await axios.get(`/api/nft_assets/${newVal}`)
-  console.log(res, res)
-  nft.value = res.data
-  loading.value = false
+  try {
+    const res = await axios.get(`/api/nft_assets/${newVal}`)
+    console.log(res, res)
+    nft.value = res.data
+  } catch (e) {
+    useMessage('error', 'Network error', '🤕')
+    nftDetailDialog.assetsId = null
+    close()
+  } finally {
+    loading.value = false
+  }
 }, { immediate: true })
 
 watch(loading, (newVal) => {
