@@ -130,7 +130,7 @@ watch(assetsId, async (newVal) => {
   } catch (e) {
     useMessage('error', 'Load NFT info error', '🤕')
     nftDetailDialog.assetsId = null
-    // close()
+    close()
   } finally {
     loading.value = false
   }

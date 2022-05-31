@@ -19,7 +19,7 @@
       <div class="contain-row">
         <div class="avatar">
           <AvatarNft v-if="homeData.avatars.length" :nft-list="homeData.avatars" ></AvatarNft>
-          <UserDefaultAvatar v-else :domain="currDomain"></UserDefaultAvatar>
+          <UserDefaultAvatar v-else id="UserDefaultAvatar" :domain="currDomain"></UserDefaultAvatar>
         </div>
         <div class="contains">
           <BaseInfo :detail="domainDetail" />
@@ -87,6 +87,9 @@ const homeData = ref<Global.HomeData>({
   poaps: []
 })
 
+/**
+ * 获取nft列表
+ */
 const getHomeData = async () => {
   const res = await axios.get(`/api/homes/all?eth_address=${account.domainOwner}`)
   if (res.data.message === 'account not exist') {
@@ -109,20 +112,26 @@ const domainDetail = ref<Global.DomainDetail>({
   textRecords: []
 })
 
+/**
+ * 获取域名信息
+ */
 const getDomainDetail = async () => {
   await switchChain()
   await setup()
   const res: any = await getDomainDetails(currDomain.value)
   domainDetail.value = res
   console.log('domainDetail', res)
-  // if (res.owner === '0x0000000000000000000000000000000000000000') {
-  //   $router.push('/notfound')
-  //   throw new Error('account not found')
-  // }
+  if (res.owner === '0x0000000000000000000000000000000000000000') {
+    $router.push('/notfound')
+    throw new Error('account not found')
+  }
 
   setOwner(res.owner)
 }
 
+/**
+ * 获取域名拥有者所有pns域名
+ */
 const getPnsDomain = async () => {
   await switchChain()
   await setup()
@@ -137,6 +146,9 @@ const getPnsDomain = async () => {
   homeData.value.domains = [...toDomain, ...homeData.value.domains]
 }
 
+/**
+ * 加载数据
+ */
 const getData = async () => {
   try {
     await getDomainDetail()
@@ -200,5 +212,9 @@ watch(currDomain, (val) => {
         }
       }
     }
+  }
+
+  #UserDefaultAvatar {
+    margin-bottom: 20px;
   }
 </style>

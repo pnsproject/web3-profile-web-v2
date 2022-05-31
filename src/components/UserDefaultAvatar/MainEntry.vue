@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<{domain: string}>(), { domain: 'zfdsdfsdf
 
 const fontSize = computed(() => {
   const width = document.body.clientWidth < 388 ? document.body.clientWidth : 388
-  return Math.ceil(width * 0.11) + 'px'
+  return Math.ceil(width * 0.08) + 'px'
 })
 </script>
 
