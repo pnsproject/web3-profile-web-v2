@@ -2,7 +2,7 @@
   <div class="page-loading">
     <div class="info">
       <img :src="loadingPic" alt="loading" class="logo">
-      <div>Loading Profile</div>
+      <div>Loading...</div>
     </div>
   </div>
 </template>
