@@ -117,6 +117,9 @@ const close = () => {
   return closeDialog()
 }
 
+/**
+ * 监听id加载详情
+ */
 watch(assetsId, async (newVal) => {
   if (!newVal) return
   loading.value = true
@@ -125,7 +128,7 @@ watch(assetsId, async (newVal) => {
     console.log(res, res)
     nft.value = res.data
   } catch (e) {
-    useMessage('error', 'Network error', '🤕')
+    useMessage('error', 'Load NFT info error', '🤕')
     nftDetailDialog.assetsId = null
     close()
   } finally {
@@ -133,6 +136,9 @@ watch(assetsId, async (newVal) => {
   }
 }, { immediate: true })
 
+/**
+ * 加载结束播放过渡动画
+ */
 watch(loading, (newVal) => {
   if (!newVal) {
     setTimeout(() => {
@@ -287,10 +293,11 @@ watch(loading, (newVal) => {
       max-width: 325px;
       display: block;
       height: 100vh;
+      overflow: auto;
 
       .detail {
-        height: calc(100vh - 435px);
         margin: 0;
+        height: auto;
 
         .des{
           .tit {

@@ -44,10 +44,13 @@ const props = defineProps<{
   errorText: boolean
 }>()
 
+// 加载状态
 const loading = ref(true)
 
+// 显示加载错误提示
 const showError = ref(false)
 
+// 显示默认图片
 const showDefault = ref(false)
 
 // svg预览
@@ -66,6 +69,9 @@ const processThumbnail = () => {
     showDefault.value = true
     return
   }
+
+  showDefault.value = false
+
   // svg
   if (props.image.startsWith('data:image/svg+xml;utf8,<svg')) {
     svgThumbnail.value = props.image.replace('data:image/svg+xml;utf8,', '')

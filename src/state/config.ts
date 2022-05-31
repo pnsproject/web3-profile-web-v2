@@ -40,7 +40,7 @@ export default {
     mirrorBlog: false,
     poap: false,
     app: false,
-    avatar: false,
+    avatar: true,
     baseInfo: true
   }
 }

@@ -1,6 +1,15 @@
 export type MsgType = 'info' | 'success' | 'warn' | 'error'
 
 const useMessage = function (type: MsgType = 'info', msg: string, emoji?: string, dark?:boolean) {
+  // 计算显示时间
+  let duration = msg.split(' ').length * 500
+
+  // 不低于0.5秒
+  duration = Math.max(500, duration)
+
+  // 不超过5秒
+  duration = Math.min(5000, duration)
+
   let messageList = document.getElementById('MessageList')
   if (!messageList) {
     messageList = document.createElement('div')
@@ -49,7 +58,7 @@ const useMessage = function (type: MsgType = 'info', msg: string, emoji?: string
       setTimeout(() => {
         messageItem.remove()
       }, 500)
-    }, 3000)
+    }, duration)
   }, 100)
 }
 
