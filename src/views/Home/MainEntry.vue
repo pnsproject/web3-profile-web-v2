@@ -88,6 +88,11 @@ const homeData = ref<Global.HomeData>({
 })
 
 /**
+ * 设置title
+ */
+document.title = `${currDomain.value.replace('.dot', '')}-Web3Profile`
+
+/**
  * 获取nft列表
  */
 const getHomeData = async () => {
