@@ -27,7 +27,7 @@ const copy = () => {
   oInput.style.display = 'none'
   document.querySelector('#oInput')?.remove()
   copied.value = true
-  useMessage('info', 'Coped!', '📋', nftDetailDialog.show)
+  useMessage('info', 'Copied!', '📋', nftDetailDialog.show)
   setTimeout(() => {
     copied.value = false
   }, 2000)
