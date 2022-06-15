@@ -20,11 +20,11 @@
       flex-flow: row nowrap;
       align-items: center;
       color: #010008;
+      font-size: 14px;
 
       img {
         margin-left: 8px;
-        height: 32px;
-        width: 88px;
+        height: 18px;
       }
     }
   }
