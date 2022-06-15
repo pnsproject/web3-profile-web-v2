@@ -60,6 +60,8 @@ import { getDomainDetails, setup, getDomains, getOwner } from 'pns-sdk'
 import { useRoute, useRouter } from 'vue-router'
 import { switchChain, setOwner, account } from '@/state/account'
 import useMessage from '@/plugins/useMessage'
+import { ethers } from 'ethers'
+import appConfig, { PnsChainId } from '@/state/config'
 
 const EditFrame = defineAsyncComponent(() => import('@/components/EditFrame/MainEntry.vue'))
 
@@ -86,6 +88,11 @@ const homeData = ref<Global.HomeData>({
   mirror_blogs: [],
   poaps: []
 })
+
+/**
+ * 设置title
+ */
+document.title = `${currDomain.value.replace('.dot', '')}-Web3Profile`
 
 /**
  * 获取nft列表
@@ -116,8 +123,9 @@ const domainDetail = ref<Global.DomainDetail>({
  * 获取域名信息
  */
 const getDomainDetail = async () => {
-  await switchChain()
-  await setup()
+  const rpc = appConfig.chains[appConfig.pnsChainId as PnsChainId].rpcUrls[0]
+  const provider: any = new ethers.providers.JsonRpcProvider(rpc)
+  await setup(provider)
   const res: any = await getDomainDetails(currDomain.value)
   domainDetail.value = res
   console.log('domainDetail', res)
@@ -133,8 +141,9 @@ const getDomainDetail = async () => {
  * 获取域名拥有者所有pns域名
  */
 const getPnsDomain = async () => {
-  await switchChain()
-  await setup()
+  const rpc = appConfig.chains[appConfig.pnsChainId as PnsChainId].rpcUrls[0]
+  const provider: any = new ethers.providers.JsonRpcProvider(rpc)
+  await setup(provider)
   const res: Global.PnsDomainItem[] = await getDomains(account.domainOwner)
   const toDomain: Global.DomainItem[] = res.map((item) => {
     return {
