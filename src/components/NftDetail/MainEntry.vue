@@ -224,10 +224,10 @@ watch(loading, (newVal) => {
     }
 
     .detail {
-      flex: 1;
       height: 100%;
       overflow: auto;
       margin-left: 30px;
+      margin-bottom: 60px;
 
       &::-webkit-scrollbar-thumb{
         background-color: rgba(255,255,255,0.08);
@@ -296,8 +296,9 @@ watch(loading, (newVal) => {
       overflow: auto;
 
       .detail {
-        margin: 0;
+        margin-left: 0;
         height: auto;
+        overflow: hidden;
 
         .des{
           .tit {
