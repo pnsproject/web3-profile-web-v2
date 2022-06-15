@@ -1,11 +1,11 @@
 <template>
   <footer class="page-footer">
-    <a :href="config.pnsUrl" target="_blank"><span>Built by</span><img src="/pns_logo.svg"></a>
+    <a href="https://www.pns.link" target="_blank"><span>Built by</span><img src="/pns_logo.svg"></a>
   </footer>
 </template>
 
 <script lang="ts" setup>
-import config from '@/state/config'
+
 </script>
 
 <style lang="less" scoped>
