@@ -14,6 +14,7 @@
     margin-bottom: 43px;
     display: flex;
     justify-content: center;
+    width: 100%;
 
     a{
       display: flex;
@@ -21,6 +22,7 @@
       align-items: center;
       color: #010008;
       font-size: 14px;
+      white-space: nowrap;
 
       img {
         margin-left: 6px;
