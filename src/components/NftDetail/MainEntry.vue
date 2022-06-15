@@ -296,6 +296,7 @@ watch(loading, (newVal) => {
       overflow: auto;
 
       .detail {
+        flex: 1;
         margin-left: 0;
         height: auto;
         overflow: hidden;

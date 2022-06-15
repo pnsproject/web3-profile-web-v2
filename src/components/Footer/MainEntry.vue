@@ -23,7 +23,7 @@
       font-size: 14px;
 
       img {
-        margin-left: 8px;
+        margin-left: 6px;
         height: 18px;
       }
     }
