@@ -3975,6 +3975,20 @@ pns-sdk@^0.7.6:
     js-sha3 "^0.8.0"
     ws ">=7.4.6"
 
+pns-sdk@^0.7.7:
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/pns-sdk/-/pns-sdk-0.7.7.tgz#0e33193f2615cc305bf286edb6a3f65ce7f5f914"
+  integrity sha512-+i7RkJG/4vnzQsAD2LaAUCWSb8nkhgFfuPB8t+twpumTASOuh9SG7i4rkZTJtD6UnKTiMlHXkToKR8h3zuvmxg==
+  dependencies:
+    axios "^0.25.0"
+    buffer "^6.0.3"
+    ethers "^5.4.7"
+    graphql "^15.7.2"
+    graphql-request "^3.6.1"
+    js-sha3 "^0.8.0"
+    pns-sdk "^0.7.6"
+    ws ">=7.4.6"
+
 postcss@^8.1.10, postcss@^8.4.5:
   version "8.4.5"
   resolved "https://registry.npmjs.org/postcss/-/postcss-8.4.5.tgz"
