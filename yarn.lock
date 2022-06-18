@@ -3719,23 +3719,10 @@ pify@^4.0.1:
   resolved "https://registry.npmjs.org/pify/-/pify-4.0.1.tgz"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pns-sdk@^0.7.6:
-  version "0.7.6"
-  resolved "https://registry.npmjs.org/pns-sdk/-/pns-sdk-0.7.6.tgz"
-  integrity sha512-fLHRF+rRWFp8B4k8a67hjeR5a3Koby0YqIR0HagI3INi8yIAB6zx8DseZcEA8MFxGkFha6eZ3FExWGwWpsM0FQ==
-  dependencies:
-    axios "^0.25.0"
-    buffer "^6.0.3"
-    ethers "^5.4.7"
-    graphql "^15.7.2"
-    graphql-request "^3.6.1"
-    js-sha3 "^0.8.0"
-    ws ">=7.4.6"
-
-pns-sdk@^0.7.7:
-  version "0.7.7"
-  resolved "https://registry.yarnpkg.com/pns-sdk/-/pns-sdk-0.7.7.tgz#0e33193f2615cc305bf286edb6a3f65ce7f5f914"
-  integrity sha512-+i7RkJG/4vnzQsAD2LaAUCWSb8nkhgFfuPB8t+twpumTASOuh9SG7i4rkZTJtD6UnKTiMlHXkToKR8h3zuvmxg==
+pns-sdk@^0.7.14:
+  version "0.7.14"
+  resolved "https://registry.yarnpkg.com/pns-sdk/-/pns-sdk-0.7.14.tgz#cc7be3b14dedbe9c39e51d0ed21e1d5261053410"
+  integrity sha512-C9yswSmW+rh40TWTMICP3ZVSRyVn3PTwRQR0Ab9q2qiL/Unpb0raStXczmuzLYGVb06UCAu3fudXReOnp3WMyw==
   dependencies:
     axios "^0.25.0"
     buffer "^6.0.3"
@@ -3744,6 +3731,19 @@ pns-sdk@^0.7.7:
     graphql-request "^3.6.1"
     js-sha3 "^0.8.0"
     pns-sdk "^0.7.6"
+    ws ">=7.4.6"
+
+pns-sdk@^0.7.6:
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/pns-sdk/-/pns-sdk-0.7.6.tgz#981ac5589590680156b92a059231f5084d0ccb04"
+  integrity sha512-fLHRF+rRWFp8B4k8a67hjeR5a3Koby0YqIR0HagI3INi8yIAB6zx8DseZcEA8MFxGkFha6eZ3FExWGwWpsM0FQ==
+  dependencies:
+    axios "^0.25.0"
+    buffer "^6.0.3"
+    ethers "^5.4.7"
+    graphql "^15.7.2"
+    graphql-request "^3.6.1"
+    js-sha3 "^0.8.0"
     ws ">=7.4.6"
 
 postcss@^8.1.10, postcss@^8.4.5:
