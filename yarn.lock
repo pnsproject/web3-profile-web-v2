@@ -3962,10 +3962,10 @@ pify@^4.0.1:
   resolved "https://registry.npmjs.org/pify/-/pify-4.0.1.tgz"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pns-sdk@^0.7.13:
-  version "0.7.13"
-  resolved "https://registry.yarnpkg.com/pns-sdk/-/pns-sdk-0.7.13.tgz#a6ab277ead14e8e981077fcdc3a0e2f167cfb81b"
-  integrity sha512-5e7nA3KV1eG7TgACeWPXFLqqp4ycz1Ri18W4orr6j+HxVCJHxZfOJNTQRL+gnEGJsYBWVWs89tEckwPcTiFcrw==
+pns-sdk@^0.7.14:
+  version "0.7.14"
+  resolved "https://registry.yarnpkg.com/pns-sdk/-/pns-sdk-0.7.14.tgz#cc7be3b14dedbe9c39e51d0ed21e1d5261053410"
+  integrity sha512-C9yswSmW+rh40TWTMICP3ZVSRyVn3PTwRQR0Ab9q2qiL/Unpb0raStXczmuzLYGVb06UCAu3fudXReOnp3WMyw==
   dependencies:
     axios "^0.25.0"
     buffer "^6.0.3"
