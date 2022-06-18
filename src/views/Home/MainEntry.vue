@@ -56,7 +56,7 @@ import ContentLoading from '@/components/PageLoadingV2/ContentLoading.vue'
 import UserDefaultAvatar from '@/components/UserDefaultAvatar/MainEntry.vue'
 import NftDetail from '@/components/NftDetail/MainEntry.vue'
 import axios from '@/plugins/axios'
-import { getDomainDetails, setup, getDomains, getOwner } from 'pns-sdk'
+import { getDomainDetails, setup, getDomains } from 'pns-sdk'
 import { useRoute, useRouter } from 'vue-router'
 import { switchChain, setOwner, account } from '@/state/account'
 import useMessage from '@/plugins/useMessage'
@@ -70,6 +70,10 @@ const loading = ref(true)
 const $route = useRoute()
 
 const $router = useRouter()
+
+const rpc = appConfig.chains[appConfig.pnsChainId as PnsChainId].rpcUrls[0]
+
+const provider: any = new ethers.providers.JsonRpcProvider(rpc)
 
 const currDomain = computed(function ():string {
   return account.currDomain
@@ -123,9 +127,6 @@ const domainDetail = ref<Global.DomainDetail>({
  * 获取域名信息
  */
 const getDomainDetail = async () => {
-  const rpc = appConfig.chains[appConfig.pnsChainId as PnsChainId].rpcUrls[0]
-  const provider: any = new ethers.providers.JsonRpcProvider(rpc)
-  await setup(provider)
   const res: any = await getDomainDetails(currDomain.value)
   domainDetail.value = res
   console.log('domainDetail', res)
@@ -141,9 +142,6 @@ const getDomainDetail = async () => {
  * 获取域名拥有者所有pns域名
  */
 const getPnsDomain = async () => {
-  const rpc = appConfig.chains[appConfig.pnsChainId as PnsChainId].rpcUrls[0]
-  const provider: any = new ethers.providers.JsonRpcProvider(rpc)
-  await setup(provider)
   const res: Global.PnsDomainItem[] = await getDomains(account.domainOwner)
   const toDomain: Global.DomainItem[] = res.map((item) => {
     return {
@@ -159,6 +157,7 @@ const getPnsDomain = async () => {
  * 加载数据
  */
 const getData = async () => {
+  await setup(provider)
   try {
     await getDomainDetail()
     await getHomeData()
