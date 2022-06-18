@@ -73,7 +73,7 @@ const $router = useRouter()
 
 const rpc = appConfig.chains[appConfig.pnsChainId as PnsChainId].rpcUrls[0]
 
-const provider: any = new ethers.providers.JsonRpcProvider(rpc)
+const provider: any = new ethers.providers.StaticJsonRpcProvider(rpc)
 
 const currDomain = computed(function ():string {
   return account.currDomain
