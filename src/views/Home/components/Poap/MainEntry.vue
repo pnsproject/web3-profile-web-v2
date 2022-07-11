@@ -17,7 +17,7 @@
     </div>
     <div class="content" :class="{ active }">
       <a class="poap-item"
-         v-for="item in props.poapList"
+         v-for="item in thumList"
          :key="item.id"
          :href="item.url"
          target="_blank"
@@ -56,6 +56,10 @@ import { showWindow } from '@/state/editWindows'
 import config from '@/state/config'
 
 const props = defineProps<{poapList: Global.Poap[]}>()
+
+const thumList = computed(() => {
+  return props.poapList.slice(0, 5)
+})
 
 const active = ref(false)
 
@@ -155,6 +159,8 @@ const contentHeight = computed(() => {
     flex-flow: column;
     display: none;
     margin-top: 14px;
+    max-height: 500px;
+    overflow: auto;
 
     &.active {
       display: flex;
@@ -218,6 +224,7 @@ const contentHeight = computed(() => {
         font-size: 14px;
         line-height: 19px;
         color: #89899A;
+        word-break: break-all;
       }
     }
   }
