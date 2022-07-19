@@ -26,6 +26,11 @@
         </div>
         <div class="value">
           <span>{{ shortAdds(item.value) }}</span>
+          <img v-if="verifyInfo[item.key.toLowerCase()]"
+               class="verify-icon"
+               :src="item.key=== 'DOT' ? dotValidIcon : ethValidIcon"
+               alt="Valid"
+               title="Valid">
           <CopyText :text="item.value" :show-text="false" />
         </div>
       </div>
@@ -37,10 +42,13 @@
 import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import CopyText from '@/components/CopyText/MainEntry.vue'
 import icons from './icons'
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { account } from '@/state/account'
 import { drive } from '@/state/mobileCheck'
 import config from '@/state/config'
+import dotValidIcon from './assets/dot_valid.svg'
+import ethValidIcon from './assets/eth_valid.svg'
+import verifyInfo from '@/state/addressValid'
 
 const props = defineProps<{address: Global.Addr[]}>()
 
@@ -185,6 +193,10 @@ const gotoEdit = () => {
       flex: 1;
 
       span {
+        margin-right: 8px;
+      }
+
+      .verify-icon {
         margin-right: 8px;
       }
     }
