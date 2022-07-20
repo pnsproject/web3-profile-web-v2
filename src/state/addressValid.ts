@@ -3,7 +3,12 @@ import axios from 'axios'
 import config from '@/state/config'
 import { account } from '@/state/account'
 
-const verifyInfo = reactive({
+const verifyInfo = reactive<{
+  eth: any;
+  dot: any;
+  twitter: any;
+  [index: string]: any;
+}>({
   eth: null,
   dot: null,
   twitter: null
