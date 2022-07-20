@@ -42,7 +42,7 @@
 import EditBtn from '@/components/EditBtn/MainEntry.vue'
 import CopyText from '@/components/CopyText/MainEntry.vue'
 import icons from './icons'
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref } from 'vue'
 import { account } from '@/state/account'
 import { drive } from '@/state/mobileCheck'
 import config from '@/state/config'
@@ -67,7 +67,7 @@ const addressList = computed(() => {
 
 const shortAdds = (address: string) => {
   if (drive.isMobile) {
-    return address.substring(0, 15) + '...' + address.substr(-4)
+    return address.substring(0, 12) + '...' + address.substr(-4)
   } else if (address.length > 42) {
     return address.substring(0, 35) + '...' + address.substr(-4)
   } else {
