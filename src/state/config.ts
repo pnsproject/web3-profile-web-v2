@@ -5,6 +5,7 @@ export default {
   apiUrl: import.meta.env.VITE_API_URI || '',
   ipfsGateway: import.meta.env.VITE_IPFS_GATEWAY || '',
   pnsUrl: import.meta.env.VITE_PNS_URL || '',
+  verifyUrl: import.meta.env.VITE_VERIFY_API_URI || '',
   ensUrl: 'https://app.ens.domains',
   mirrorBlogUrl: 'https://mirror.xyz',
   scrollBarWidth: 8,

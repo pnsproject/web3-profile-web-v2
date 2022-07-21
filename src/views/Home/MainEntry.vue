@@ -62,6 +62,7 @@ import { switchChain, setOwner, account } from '@/state/account'
 import useMessage from '@/plugins/useMessage'
 import { ethers } from 'ethers'
 import appConfig, { PnsChainId } from '@/state/config'
+import { getVerifyInfo } from '@/state/addressValid'
 
 const EditFrame = defineAsyncComponent(() => import('@/components/EditFrame/MainEntry.vue'))
 
@@ -173,6 +174,7 @@ const getData = async () => {
 
 watch(currDomain, (val) => {
   getData()
+  getVerifyInfo()
 }, { immediate: true })
 </script>
 
