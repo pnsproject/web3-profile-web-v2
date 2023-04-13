@@ -11,6 +11,7 @@
   "dependencies": {
     "@rollup/plugin-inject": "^4.0.4",
     "buffer": "^6.0.3",
+    "graphql-request": "^6.0.0",
     "identicon.js": "^2.3.3",
     "pns-sdk": "^0.7.14",
     "swiper": "^8.1.3",

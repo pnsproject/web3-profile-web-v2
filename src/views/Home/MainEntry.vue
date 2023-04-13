@@ -63,6 +63,7 @@ import useMessage from '@/plugins/useMessage'
 import { ethers } from 'ethers'
 import appConfig, { PnsChainId } from '@/state/config'
 import { getVerifyInfo } from '@/state/addressValid'
+import queryDomainByWalletAddress from '@/utils/queryDomainByWalletAddress'
 
 const EditFrame = defineAsyncComponent(() => import('@/components/EditFrame/MainEntry.vue'))
 
@@ -143,7 +144,7 @@ const getDomainDetail = async () => {
  * 获取域名拥有者所有pns域名
  */
 const getPnsDomain = async () => {
-  const res: Global.PnsDomainItem[] = await getDomains(account.domainOwner)
+  const res: Global.PnsDomainItem[] = await queryDomainByWalletAddress(account.domainOwner)
   const toDomain: Global.DomainItem[] = res.map((item) => {
     return {
       id: item.id,
