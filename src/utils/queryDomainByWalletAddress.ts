@@ -2,28 +2,33 @@ import { request, gql } from 'graphql-request'
 
 async function queryDomainByWalletAddress (address: string) {
   const query = gql`
-   query MyQuery($account: String) {
-      domains (where: {owner: $account}) {
-        id
-        name
-        owner {
-          id
+        query MyQuery {
+            domains(where: {owner: {id_eq: "${address}"}, parent: {id_eq: "0x3fce7d1364a893e213bc4212792b517ffc88f5b13b86c8ef9c8d390c3a1370ce"}}) {
+                owner {
+                  id
+                }
+                labelName
+                labelhash
+                name
+                id
+                createdAt
+                parent {
+                  id
+                  labelName
+                  labelhash
+                  name
+                  registrations {
+                    expiryDate
+                  }
+                }
+                registrations {
+                  expiryDate
+                }
+            }
         }
-        parent {
-          id
-        }
-        registrations {
-          expiryDate
-        }
-      }
-  }
-`
-  const variables = {
-    account: address
-  }
-
-  const customGql = 'https://pns-graph.ddns.so/subgraphs/name/graphprotocol/pns'
-  const resp: any = await request(customGql, query, variables)
+    `
+  const customGql = 'https://pnsgraph-api.pns.link/graphql'
+  const resp: any = await request(customGql, query)
 
   const all = resp.domains.map((item:any) => {
     return {
