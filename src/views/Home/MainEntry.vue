@@ -106,8 +106,9 @@ document.title = `${currDomain.value.replace('.dot', '')}-Web3Profile`
 const getHomeData = async () => {
   const res = await axios.get(`/api/homes/all?eth_address=${account.domainOwner}`)
   if (res.data.message === 'account not exist') {
-    $router.push('/notfound')
-    throw new Error('account not found')
+    // $router.push('/notfound')
+    // throw new Error('account not found')
+    return
   }
 
   homeData.value = res.data.result
